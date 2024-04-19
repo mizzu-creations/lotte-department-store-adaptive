@@ -4,6 +4,7 @@ const topBtn = document.querySelector("#scroll-to-top");
 const topBtnCircle = document.querySelector("#scroll-to-top .circle");
 const topBtnArrow = document.querySelector("#scroll-to-top img");
 let isAnimationPlaying = false;
+let prevScrollY = 0;
 
 const toBtnTl = gsap
   .timeline({ paused: true })
@@ -26,14 +27,14 @@ const toBtnTl = gsap
 
 topBtn.addEventListener("mouseover", () => {
   if (!isAnimationPlaying) {
-    setScale(topBtnCircle, 0.9);
+    setScale(topBtnCircle, 0.3, 0.9);
     toBtnTl.play();
     isAnimationPlaying = true;
   }
 });
 topBtn.addEventListener("mouseleave", () => {
   if (isAnimationPlaying) {
-    setScale(topBtnCircle, 1);
+    setScale(topBtnCircle, 0.3, 1);
     toBtnTl.reverse(0);
     isAnimationPlaying = false;
   }
@@ -48,10 +49,15 @@ window.addEventListener("load", () => {
     yPercent: 1000,
   });
 });
+
 window.addEventListener("scroll", () => {
-  if (window.scrollY >= 1000) {
-    setScale(topBtn, 1);
-  } else {
-    setScale(topBtn, 0);
+  const currentScrollY = window.scrollY;
+
+  if (currentScrollY <= 1000 && prevScrollY > 1000) {
+    setScale(topBtn, 0.4, 0);
+  } else if (currentScrollY > 1000 && prevScrollY <= 1000) {
+    setScale(topBtn, 0.2, 1);
   }
+
+  prevScrollY = currentScrollY;
 });

@@ -116,6 +116,11 @@ meter {
   display: none;
 }
 
+a,
+button {
+  cursor: none;
+}
+
 html {
   font-size: 62.5%;
 }
@@ -188,31 +193,78 @@ html {
 
 .gnb {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  width: 100%;
-  max-width: 120rem;
+  order: 1;
+  justify-content: space-between;
+  height: 6.5rem;
+  font-size: 1.5rem;
+}
+.gnb__logo {
+  padding-left: 4vw;
 }
 .gnb__menu {
   display: flex;
   gap: 4.8rem;
+  height: 100%;
+}
+.gnb__menu li {
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 .gnb__search {
   display: flex;
+  align-items: center;
+  gap: 1.6rem;
+  padding-right: 4vw;
+}
+.gnb__search--left {
+  display: flex;
+  gap: 0.5rem;
+  width: 20rem;
+  height: 3.2rem;
+  border-radius: 2.5rem;
+  background-color: #000000;
+}
+.gnb__search--right {
+  width: 3.2rem;
+  height: 3.2rem;
+  background: url("../../assets/icons/circle-search-32x32-black.svg");
+  background-size: 3.2rem 3.2rem;
+}
+
+.branch-info-ani {
+  display: flex;
+  width: 20rem;
+  height: 3.2rem;
+  position: absolute;
+  border-radius: 2.5rem;
+  color: #ffffff;
+  overflow: hidden;
+}
+.branch-info-ani > div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.branch-info-ani > div span {
+  display: flex;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+.branch-info-ani > div span:first-child {
+  margin-left: 0.8rem;
+}
+.branch-info-ani > div span::after {
+  content: "";
+  width: 1.8rem;
+  height: 1.8rem;
+  background: url("../../assets/images/quick.gif") center;
+  background-size: 1.8rem 1.8rem;
 }
 
 html {
   scroll-behavior: smooth;
-}
-
-.box-wrapper {
-  display: flex;
-  gap: 2rem;
-}
-.box-wrapper .box {
-  width: 20rem;
-  height: 20rem;
-  background-color: #e0f55c;
 }
 
 #scroll-to-top {
@@ -229,7 +281,6 @@ html {
   color: #ffffff;
   line-height: 0;
   z-index: 10;
-  cursor: none;
   overflow: hidden;
   transform: scale(0);
 }
@@ -265,8 +316,38 @@ html {
   z-index: 10;
 }
 
+.spot-menu, .gnb {
+  width: 100%;
+  min-width: 120rem;
+}
+
 header {
   display: flex;
-  flex-direction: column-reverse;
   align-items: center;
+  flex-direction: column-reverse;
+  width: 100%;
+  min-width: 130rem;
+  position: fixed;
+  background-color: #ffffff;
+  border-bottom: 0.1rem solid #ececec;
+}
+header::before {
+  content: "";
+  width: 100%;
+  order: 2;
+  border-bottom: 0.1rem solid #ececec;
+}
+
+.spot-menu {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1.6rem;
+  height: 3rem;
+  padding-right: 4vw;
+  order: 3;
+}
+.spot-menu img {
+  width: unset;
+  height: 1.3rem;
 }/*# sourceMappingURL=style.css.map */

@@ -1,5 +1,5 @@
-function setScale(elem, scale) {
-  gsap.to(elem, 0.4, {
+function setScale(elem, duration, scale) {
+  gsap.to(elem, duration, {
     scale: scale,
   });
 }

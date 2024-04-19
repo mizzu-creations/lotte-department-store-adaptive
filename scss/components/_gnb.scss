@@ -1,14 +1,71 @@
 .gnb {
-  display: flex;
+  @include flex-center-vert;
+  order: 1;
   justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  max-width: 120rem;
+  @extend %layout-center;
+  height: 6.5rem;
+  font-size: 1.5rem;
+  &__logo {
+    padding-left: 4vw;
+  }
   &__menu {
     display: flex;
     gap: 4.8rem;
+    height: 100%;
+    li {
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
   }
   &__search {
     display: flex;
+    align-items: center;
+    gap: 1.6rem;
+    padding-right: 4vw;
+    &--left {
+      display: flex;
+      gap: 0.5rem;
+      width: 20rem;
+      height: 3.2rem;
+      border-radius: 2.5rem;
+      background-color: $black;
+    }
+    &--right {
+      width: 3.2rem;
+      height: 3.2rem;
+      background: url("../../assets/icons/circle-search-32x32-black.svg");
+      background-size: 3.2rem 3.2rem;
+    }
+  }
+}
+
+.branch-info-ani {
+  display: flex;
+  width: 20rem;
+  height: 3.2rem;
+  position: absolute;
+  border-radius: 2.5rem;
+  color: $white;
+  overflow: hidden;
+  > div {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    span {
+      display: flex;
+      gap: 0.5rem;
+      white-space: nowrap;
+      &:first-child {
+        margin-left: 0.8rem;
+      }
+      &::after {
+        content: "";
+        width: 1.8rem;
+        height: 1.8rem;
+        background: url("../../assets/images/quick.gif") center;
+        background-size: 1.8rem 1.8rem;
+      }
+    }
   }
 }
