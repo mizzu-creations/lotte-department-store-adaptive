@@ -1,19 +1,24 @@
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* Mouse Cursor Reset */
+html {
+  cursor: none;
 }
+
+// body {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   width: 100%;
+//   height: 100vh;
+//   gap: 4rem;
+// }
 
 .cursor {
   width: 2.1rem;
   height: 2.1rem;
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: fixed;
   border-radius: 50%;
   background-color: $cursor;
   pointer-events: none;
-  transform-origin: 50% 50%;
   transform: translate(-50%, -50%);
   mix-blend-mode: difference;
   opacity: 0;
@@ -52,25 +57,27 @@ body {
   }
 }
 
-.sample {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 30rem;
-  height: 50rem;
-  background-color: yellow;
-  font-size: 2rem;
-  user-select: none;
-}
+// .sample {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   width: 30rem;
+//   height: 40rem;
+//   border-radius: 2rem;
+//   background-color: rgb(255, 225, 0);
+//   font-size: 2rem;
+//   user-select: none;
+// }
 
-.sample2 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 30rem;
-  height: 50rem;
-  background-color: blue;
-  font-size: 2rem;
-  color: $white;
-  user-select: none;
-}
+// .sample2 {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   width: 30rem;
+//   height: 40rem;
+//   border-radius: 2rem;
+//   background-color: blue;
+//   font-size: 2rem;
+//   color: $white;
+//   user-select: none;
+// }

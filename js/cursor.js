@@ -1,9 +1,8 @@
 const cursor = document.querySelector(".cursor");
 const cursorPrev = document.querySelector(".cursor-slide.prev");
 const cursorNext = document.querySelector(".cursor-slide.next");
-const card = document.querySelector(".sample");
-const list = document.querySelector(".sample2");
-let isLoading = true;
+// const card = document.querySelector(".sample");
+// const list = document.querySelector(".sample2");
 let isSlideOpen = false;
 
 function setCursorPosition(left, top) {
@@ -37,54 +36,53 @@ function scaleCursor(scale) {
   });
 }
 
-card.addEventListener("mouseover", () => {
-  cursor.classList.add("more");
-  scaleCursor(5);
-});
-card.addEventListener("mouseleave", () => {
-  cursor.classList.remove("more");
-  scaleCursor(1);
-});
+// card.addEventListener("mouseover", () => {
+//   cursor.classList.add("more");
+//   scaleCursor(5);
+// });
+// card.addEventListener("mouseleave", () => {
+//   cursor.classList.remove("more");
+//   scaleCursor(1);
+// });
 
-list.addEventListener("mouseover", () => {
-  gsap.to(cursorPrev, 1, {
-    opacity: 1,
-  });
-  gsap.to(cursorNext, 1, {
-    opacity: 1,
-  });
-});
-list.addEventListener("mouseleave", () => {
-  gsap.to(cursorPrev, 1, {
-    opacity: 0,
-  });
-  gsap.to(cursorNext, 1, {
-    opacity: 0,
-  });
-});
-list.addEventListener("mousedown", (e) => {
-  isSlideOpen = true;
-  setCursorPosition(e.clientX, e.clientY);
-  scaleCursor(2);
-});
-list.addEventListener("mouseup", (e) => {
-  isSlideOpen = false;
-  setCursorPosition(e.clientX, e.clientY);
-  scaleCursor(1);
-});
+// list.addEventListener("mouseover", () => {
+//   gsap.to(cursorPrev, 1, {
+//     opacity: 1,
+//   });
+//   gsap.to(cursorNext, 1, {
+//     opacity: 1,
+//   });
+// });
+// list.addEventListener("mouseleave", () => {
+//   gsap.to(cursorPrev, 1, {
+//     opacity: 0,
+//   });
+//   gsap.to(cursorNext, 1, {
+//     opacity: 0,
+//   });
+// });
+// list.addEventListener("mousedown", (e) => {
+//   isSlideOpen = true;
+//   setCursorPosition(e.clientX, e.clientY);
+//   scaleCursor(2);
+// });
+// list.addEventListener("mouseup", (e) => {
+//   isSlideOpen = false;
+//   setCursorPosition(e.clientX, e.clientY);
+//   scaleCursor(1);
+// });
 
 window.addEventListener("mousemove", (e) => {
-  if (isLoading) {
-    isLoading = false;
-    gsap.to(cursor, 0.4, {
-      opacity: 1,
-      delay: 0.2,
-    });
-  }
+  gsap.to(cursor, 0.4, {
+    opacity: 1,
+    delay: 0.2,
+  });
   setCursorPosition(e.clientX, e.clientY);
 });
-window.addEventListener("mouseup", (e) => {
-  isSlideOpen = false;
-  setCursorPosition(e.clientX, e.clientY);
-  scaleCursor(1);
-});
+// window.addEventListener("mouseup", (e) => {
+//   isSlideOpen = false;
+//   if (e.target.classList.value !== "sample") {
+//     setCursorPosition(e.clientX, e.clientY);
+//     scaleCursor(1);
+//   }
+// });
