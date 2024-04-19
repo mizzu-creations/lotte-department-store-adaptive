@@ -79,10 +79,14 @@ window.addEventListener("mousemove", (e) => {
   });
   setCursorPosition(e.clientX, e.clientY);
 });
-// window.addEventListener("mouseup", (e) => {
-//   isSlideOpen = false;
-//   if (e.target.classList.value !== "sample") {
-//     setCursorPosition(e.clientX, e.clientY);
-//     scaleCursor(1);
-//   }
-// });
+window.addEventListener("mousedown", (e) => {
+  scaleCursor(2);
+});
+window.addEventListener("mouseup", (e) => {
+  // isSlideOpen = false;
+  // if (e.target.classList.value !== "sample") {
+  //   setCursorPosition(e.clientX, e.clientY);
+  //   scaleCursor(1);
+  // }
+  scaleCursor(1);
+});

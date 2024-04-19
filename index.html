@@ -29,13 +29,70 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    <script defer src="./js/cssVariables.js"></script>
     <script defer src="./js/cursor.js"></script>
+    <script type="module" defer src="./js/scrollToTop.js"></script>
   </head>
   <body>
     <div class="web">
       <div class="cursor"></div>
       <div class="cursor-slide prev"></div>
       <div class="cursor-slide next"></div>
+      <header>
+        <nav class="gnb">
+          <a href="/" class="gnb__logo"
+            ><img src="./assets/images/logo.svg" alt="롯데백화점"
+          /></a>
+          <ul class="gnb__menu">
+            <li>
+              <a href="javascript:void(0)"
+                ><span>지점안내</span>
+                <!-- <ul>
+                  <li>
+                    <a href="javascript:void(0)"><h3>백화점</h3></a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0)"><span>아울렛</span></a>
+                  </li>
+                </ul> -->
+              </a>
+            </li>
+            <li><a href="javascript:void(0)">쇼핑정보</a></li>
+            <li><a href="javascript:void(0)">컬쳐앤라이프</a></li>
+            <li><a href="javascript:void(0)">매거진</a></li>
+            <li><a href="javascript:void(0)">고객서비스</a></li>
+            <li><a href="javascript:void(0)">ESG</a></li>
+          </ul>
+          <div class="gnb__search">
+            <dialog class="gnb__search--left branch-info" open>
+              <span>지점 정보 한 눈에 보기</span>
+            </dialog>
+            <button class="gnb__search--right search"></button>
+          </div>
+        </nav>
+        <div class="spot-menu">
+          <a href="javascript:void(0)"
+            ><img src="./assets/images/app.png" alt="롯데백화점 앱 다운로드"
+          /></a>
+          <a href="javascript:void(0)"
+            ><img src="./assets/images/sitemap.png" alt="사이트맵"
+          /></a>
+          <a href="javascript:void(0)"
+            ><img src="./assets/images/kr.png" alt="한국어"
+          /></a>
+          <dialog class="lang"><span>언어</span></dialog>
+        </div>
+      </header>
+      <main style="height: 200vh"></main>
+      <button id="scroll-to-top">
+        <span class="circle"></span>
+        <span class="text-wrap">
+          <span class="text">T</span>
+          <span class="text">o</span>
+          <span class="text">p</span>
+        </span>
+        <img src="./assets/icons/arrow_top.svg" alt="사이트 맨 위로 가기" />
+      </button>
     </div>
     <div class="mobile" style="display: none"></div>
     <!-- <section class="sample">Card UI Component</section>

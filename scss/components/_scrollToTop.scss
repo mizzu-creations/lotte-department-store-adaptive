@@ -1,0 +1,62 @@
+html {
+  scroll-behavior: smooth;
+}
+.box-wrapper {
+  display: flex;
+  gap: 2rem;
+  .box {
+    width: 20rem;
+    height: 20rem;
+    background-color: $signature;
+  }
+}
+
+#scroll-to-top {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4.8rem;
+  width: max(var(--uw) * 6.25, 9.4rem);
+  height: max(var(--uw) * 6.25, 9.4rem);
+  position: fixed;
+  bottom: 5rem;
+  right: 5rem;
+  color: $white;
+  line-height: 0;
+  z-index: 10;
+  cursor: none;
+  overflow: hidden;
+  transform: scale(0);
+  .circle {
+    width: max(var(--uw) * 6.25, 9.4rem);
+    height: max(var(--uw) * 6.25, 9.4rem);
+    position: absolute;
+    border-radius: 50%;
+    background-color: $black;
+  }
+  .text-wrap {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    letter-spacing: -0.2rem;
+    font-family: "Orelo SemiWide DemiBold";
+    z-index: 10;
+    .text {
+      display: block;
+      font-size: max(var(--uw) * 2, 2.8rem);
+      &:nth-child(2) {
+        letter-spacing: 0.1rem;
+        font-family: "Orelo SemiWide DemiBold Italic";
+      }
+    }
+  }
+  img {
+    width: calc(var(--uw) * 1.1979166667);
+    height: calc(var(--uw) * 1.875);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 10;
+  }
+}

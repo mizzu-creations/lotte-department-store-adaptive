@@ -124,6 +124,16 @@ body {
   font-size: 1rem;
 }
 
+@font-face {
+  font-family: "Orelo SemiWide DemiBold";
+  src: url("https://db.onlinewebfonts.com/t/0da4520eba0e03f116ad37c743fd3ffa.eot");
+  src: url("https://db.onlinewebfonts.com/t/0da4520eba0e03f116ad37c743fd3ffa.eot?#iefix") format("embedded-opentype"), url("https://db.onlinewebfonts.com/t/0da4520eba0e03f116ad37c743fd3ffa.woff2") format("woff2"), url("https://db.onlinewebfonts.com/t/0da4520eba0e03f116ad37c743fd3ffa.woff") format("woff"), url("https://db.onlinewebfonts.com/t/0da4520eba0e03f116ad37c743fd3ffa.ttf") format("truetype"), url("https://db.onlinewebfonts.com/t/0da4520eba0e03f116ad37c743fd3ffa.svg#Orelo SemiWide DemiBold") format("svg");
+}
+@font-face {
+  font-family: "Orelo SemiWide DemiBold Italic";
+  src: url("https://db.onlinewebfonts.com/t/f1b75ba2deef90318b4ca1517ff2d517.eot");
+  src: url("https://db.onlinewebfonts.com/t/f1b75ba2deef90318b4ca1517ff2d517.eot?#iefix") format("embedded-opentype"), url("https://db.onlinewebfonts.com/t/f1b75ba2deef90318b4ca1517ff2d517.woff2") format("woff2"), url("https://db.onlinewebfonts.com/t/f1b75ba2deef90318b4ca1517ff2d517.woff") format("woff"), url("https://db.onlinewebfonts.com/t/f1b75ba2deef90318b4ca1517ff2d517.ttf") format("truetype"), url("https://db.onlinewebfonts.com/t/f1b75ba2deef90318b4ca1517ff2d517.svg#Orelo SemiWide DemiBold Italic") format("svg");
+}
 /* Mouse Cursor Reset */
 html {
   cursor: none;
@@ -139,6 +149,7 @@ html {
   transform: translate(-50%, -50%);
   mix-blend-mode: difference;
   opacity: 0;
+  z-index: 20;
 }
 .cursor.more::before {
   content: "more";
@@ -173,4 +184,89 @@ html {
   background-size: 1.2rem 2.4rem;
   transform: rotate(180deg);
   transform-origin: left;
+}
+
+.gnb {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 120rem;
+}
+.gnb__menu {
+  display: flex;
+  gap: 4.8rem;
+}
+.gnb__search {
+  display: flex;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.box-wrapper {
+  display: flex;
+  gap: 2rem;
+}
+.box-wrapper .box {
+  width: 20rem;
+  height: 20rem;
+  background-color: #e0f55c;
+}
+
+#scroll-to-top {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4.8rem;
+  width: max(var(--uw) * 6.25, 9.4rem);
+  height: max(var(--uw) * 6.25, 9.4rem);
+  position: fixed;
+  bottom: 5rem;
+  right: 5rem;
+  color: #ffffff;
+  line-height: 0;
+  z-index: 10;
+  cursor: none;
+  overflow: hidden;
+  transform: scale(0);
+}
+#scroll-to-top .circle {
+  width: max(var(--uw) * 6.25, 9.4rem);
+  height: max(var(--uw) * 6.25, 9.4rem);
+  position: absolute;
+  border-radius: 50%;
+  background-color: #000000;
+}
+#scroll-to-top .text-wrap {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  letter-spacing: -0.2rem;
+  font-family: "Orelo SemiWide DemiBold";
+  z-index: 10;
+}
+#scroll-to-top .text-wrap .text {
+  display: block;
+  font-size: max(var(--uw) * 2, 2.8rem);
+}
+#scroll-to-top .text-wrap .text:nth-child(2) {
+  letter-spacing: 0.1rem;
+  font-family: "Orelo SemiWide DemiBold Italic";
+}
+#scroll-to-top img {
+  width: calc(var(--uw) * 1.1979166667);
+  height: calc(var(--uw) * 1.875);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 10;
+}
+
+header {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
 }/*# sourceMappingURL=style.css.map */
