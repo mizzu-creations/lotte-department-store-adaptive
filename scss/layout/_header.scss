@@ -5,12 +5,11 @@ header {
   min-width: 130rem;
   position: fixed;
   background-color: $white;
-  border-bottom: 0.1rem solid $grayec;
   &::before {
     content: "";
     width: 100%;
     order: 2;
-    border-bottom: 0.1rem solid $grayec;
+    border-bottom: 0.14rem solid $grayec;
   }
 }
 

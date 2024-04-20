@@ -197,20 +197,41 @@ html {
   order: 1;
   justify-content: space-between;
   height: 6.5rem;
+  background-color: #ffffff;
   font-size: 1.5rem;
+  border-bottom: 0.1rem solid #ececec;
+  z-index: 1;
 }
 .gnb__logo {
   padding-left: 4vw;
 }
-.gnb__menu {
+.gnb__menu-tab {
   display: flex;
-  gap: 4.8rem;
   height: 100%;
 }
-.gnb__menu li {
+.gnb__menu-tab li {
   display: flex;
   align-items: center;
   height: 100%;
+  padding: 0 2rem;
+}
+.gnb__menu-tab li a {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  position: relative;
+}
+.gnb__menu-tab li a::after {
+  content: "";
+  width: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border-bottom: 0.2rem solid #000000;
+  transition: width 0.2s;
+}
+.gnb__menu-tab li:hover a::after {
+  width: 100%;
 }
 .gnb__search {
   display: flex;
@@ -261,6 +282,24 @@ html {
   height: 1.8rem;
   background: url("../../assets/images/quick.gif") center;
   background-size: 1.8rem 1.8rem;
+}
+
+.gnb__menu-content {
+  width: 100%;
+  height: var(--content-height);
+  position: absolute;
+  top: 9.5rem;
+  background-color: #ffffff;
+  border-bottom: 0.14rem solid #ececec;
+  overflow: hidden;
+  transition: height 0.3s;
+  z-index: 1;
+}
+.gnb__menu-content .contents-list {
+  display: none;
+}
+.gnb__menu-content .contents-list.--active {
+  display: block;
 }
 
 html {
@@ -329,13 +368,12 @@ header {
   min-width: 130rem;
   position: fixed;
   background-color: #ffffff;
-  border-bottom: 0.1rem solid #ececec;
 }
 header::before {
   content: "";
   width: 100%;
   order: 2;
-  border-bottom: 0.1rem solid #ececec;
+  border-bottom: 0.14rem solid #ececec;
 }
 
 .spot-menu {
