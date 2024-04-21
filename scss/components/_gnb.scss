@@ -5,6 +5,7 @@
   @extend %layout-center;
   height: 6.5rem;
   background-color: $white;
+  font-family: "Noto Sans KR", sans-serif;
   font-size: 1.5rem;
   border-bottom: 0.1rem solid $grayec;
   z-index: 1;
@@ -32,7 +33,7 @@
           transition: width 0.2s;
         }
       }
-      &:hover {
+      &.--active {
         a::after {
           width: 100%;
         }
@@ -40,8 +41,7 @@
     }
   }
   &__search {
-    display: flex;
-    align-items: center;
+    @include flex-center-vert;
     gap: 1.6rem;
     padding-right: 4vw;
     &--left {
@@ -70,8 +70,7 @@
   color: $white;
   overflow: hidden;
   > div {
-    display: flex;
-    align-items: center;
+    @include flex-center-vert;
     gap: 0.5rem;
     span {
       display: flex;
@@ -101,10 +100,93 @@
   overflow: hidden;
   transition: height 0.3s;
   z-index: 1;
-  .contents-list {
+}
+
+.contents-list {
+  display: none;
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 400;
+  font-size: 1.4rem;
+  color: $gray66;
+  &.--active {
+    @include flex-center-horiz;
+    gap: 18rem;
+    width: 100%;
+  }
+  &__tab {
+    @include flex-column;
+    gap: 2.7rem;
+    padding: 4rem 0 4.2rem;
+  }
+  &__menu {
     display: none;
+    gap: 0 11rem;
+    min-width: 70rem;
+    padding: 4rem 0 4.2rem;
     &.--active {
-      display: block;
+      display: flex;
+    }
+    li {
+      @include flex-column;
+      gap: 2.7rem;
+      min-width: 9rem;
+      ul {
+        @include flex-column;
+        flex-wrap: wrap;
+        gap: 1.9rem 9rem;
+        width: fit-content;
+        max-height: 39rem;
+      }
+    }
+  }
+}
+
+.list-title {
+  font-weight: 500;
+  color: $black;
+  &.underline {
+    font-weight: 400;
+    color: $gray66;
+    transition: all 0.4s;
+    &::after {
+      content: "";
+      width: 0;
+      height: 0.01rem;
+      background-color: $black;
+      transition: width 0.3s;
+    }
+    &.--active {
+      @include flex-column;
+      color: $black;
+      font-weight: 500;
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.list-item {
+  width: fit-content;
+  box-sizing: border-box;
+  position: relative;
+  font-weight: 400;
+  color: $gray66;
+  transition: all 0.3s;
+  &::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 0.01rem;
+    position: absolute;
+    background-color: $gray66;
+    transition: width 0.3s;
+  }
+  &:hover {
+    color: $black;
+    font-weight: 500;
+    &::after {
+      width: 100%;
     }
   }
 }

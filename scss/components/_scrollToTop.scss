@@ -3,10 +3,8 @@ html {
 }
 
 #scroll-to-top {
-  display: flex;
+  @include flex-center;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   gap: 4.8rem;
   width: max(var(--uw) * 6.25, 9.4rem);
   height: max(var(--uw) * 6.25, 9.4rem);

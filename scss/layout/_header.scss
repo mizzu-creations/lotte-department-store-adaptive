@@ -14,9 +14,8 @@ header {
 }
 
 .spot-menu {
-  display: flex;
+  @include flex-center-vert;
   justify-content: flex-end;
-  align-items: center;
   gap: 1.6rem;
   @extend %layout-center;
   height: 3rem;

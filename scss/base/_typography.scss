@@ -4,7 +4,7 @@ html {
 body {
   font-size: 1rem;
 }
-
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
 @font-face {
   font-family: "Orelo SemiWide DemiBold";
   src: url("https://db.onlinewebfonts.com/t/0da4520eba0e03f116ad37c743fd3ffa.eot");
@@ -19,7 +19,6 @@ body {
     url("https://db.onlinewebfonts.com/t/0da4520eba0e03f116ad37c743fd3ffa.svg#Orelo SemiWide DemiBold")
       format("svg");
 }
-
 @font-face {
   font-family: "Orelo SemiWide DemiBold Italic";
   src: url("https://db.onlinewebfonts.com/t/f1b75ba2deef90318b4ca1517ff2d517.eot");

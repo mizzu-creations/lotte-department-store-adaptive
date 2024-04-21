@@ -7,6 +7,7 @@
     - The "symbol *" part is to solve Firefox SVG sprite bug
     - The "html" element is excluded, otherwise a bug in Chrome breaks the CSS hyphens property (https://github.com/elad2412/the-new-css-reset/issues/36)
 */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap");
 *:where(:not(html, iframe, canvas, img, svg, video, audio):not(svg *, symbol *)) {
   all: unset;
   display: revert;
@@ -198,6 +199,7 @@ html {
   justify-content: space-between;
   height: 6.5rem;
   background-color: #ffffff;
+  font-family: "Noto Sans KR", sans-serif;
   font-size: 1.5rem;
   border-bottom: 0.1rem solid #ececec;
   z-index: 1;
@@ -230,7 +232,7 @@ html {
   border-bottom: 0.2rem solid #000000;
   transition: width 0.2s;
 }
-.gnb__menu-tab li:hover a::after {
+.gnb__menu-tab li.--active a::after {
   width: 100%;
 }
 .gnb__search {
@@ -295,11 +297,101 @@ html {
   transition: height 0.3s;
   z-index: 1;
 }
-.gnb__menu-content .contents-list {
+
+.contents-list {
   display: none;
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 400;
+  font-size: 1.4rem;
+  color: #666666;
 }
-.gnb__menu-content .contents-list.--active {
+.contents-list.--active {
+  display: flex;
+  justify-content: center;
+  gap: 18rem;
+  width: 100%;
+}
+.contents-list__tab {
+  display: flex;
+  flex-direction: column;
+  gap: 2.7rem;
+  padding: 4rem 0 4.2rem;
+}
+.contents-list__menu {
+  display: none;
+  gap: 0 11rem;
+  min-width: 70rem;
+  padding: 4rem 0 4.2rem;
+}
+.contents-list__menu.--active {
+  display: flex;
+}
+.contents-list__menu li {
+  display: flex;
+  flex-direction: column;
+  gap: 2.7rem;
+  min-width: 9rem;
+}
+.contents-list__menu li ul {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 1.9rem 9rem;
+  width: -moz-fit-content;
+  width: fit-content;
+  max-height: 39rem;
+}
+
+.list-title {
+  font-weight: 500;
+  color: #000000;
+}
+.list-title.underline {
+  font-weight: 400;
+  color: #666666;
+  transition: all 0.4s;
+}
+.list-title.underline::after {
+  content: "";
+  width: 0;
+  height: 0.01rem;
+  background-color: #000000;
+  transition: width 0.3s;
+}
+.list-title.underline.--active {
+  display: flex;
+  flex-direction: column;
+  color: #000000;
+  font-weight: 500;
+}
+.list-title.underline.--active::after {
+  width: 100%;
+}
+
+.list-item {
+  width: -moz-fit-content;
+  width: fit-content;
+  box-sizing: border-box;
+  position: relative;
+  font-weight: 400;
+  color: #666666;
+  transition: all 0.3s;
+}
+.list-item::after {
+  content: "";
   display: block;
+  width: 0;
+  height: 0.01rem;
+  position: absolute;
+  background-color: #666666;
+  transition: width 0.3s;
+}
+.list-item:hover {
+  color: #000000;
+  font-weight: 500;
+}
+.list-item:hover::after {
+  width: 100%;
 }
 
 html {
@@ -308,9 +400,9 @@ html {
 
 #scroll-to-top {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  flex-direction: column;
   gap: 4.8rem;
   width: max(var(--uw) * 6.25, 9.4rem);
   height: max(var(--uw) * 6.25, 9.4rem);
@@ -378,8 +470,8 @@ header::before {
 
 .spot-menu {
   display: flex;
-  justify-content: flex-end;
   align-items: center;
+  justify-content: flex-end;
   gap: 1.6rem;
   height: 3rem;
   padding-right: 4vw;
