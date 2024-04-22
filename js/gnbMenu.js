@@ -11,48 +11,83 @@ const headerElements = [
 ];
 let currentIdx = 0;
 
-gnbMenuContent.style.setProperty("--content-height", 0);
-
+function addActive(element) {
+  element.classList.add("--active");
+}
+function removeAllActive(elements) {
+  elements.forEach((elem) => elem.classList.remove("--active"));
+}
+function setContentHeight(height) {
+  gnbMenuContent.style.setProperty("--content-height", height);
+}
+function closeContent() {
+  removeAllActive(gnbMenuTabs);
+  setContentHeight(0);
+}
 function updateContentHeight(idx) {
-  const contentHeight = gnbContentList[idx].scrollHeight + "px";
-  gnbMenuContent.style.setProperty("--content-height", contentHeight);
-  gnbContentList.forEach((list) => {
-    list.classList.remove("--active");
-  });
-  gnbContentList[idx].classList.add("--active");
+  const contentHeight = `${gnbContentList[idx].scrollHeight}px`;
+  setContentHeight(contentHeight);
+  removeAllActive(gnbContentList);
+  addActive(gnbContentList[idx]);
 }
 
-gnbMenu.addEventListener("mousemove", (e) => {
-  gnbMenuTabs.forEach((tab) => tab.classList.remove("--active"));
-  e.target.closest("li").classList.add("--active");
-  currentIdx = gnbMenuTabs.indexOf(e.target.closest("li"));
-  updateContentHeight(currentIdx);
-});
-
-gnbMenuContent.addEventListener("mouseleave", () => {
-  gnbMenuTabs.forEach((tab) => tab.classList.remove("--active"));
-  gnbMenuContent.style.setProperty("--content-height", 0);
-});
-
-headerElements.forEach((element) => {
-  element.addEventListener("mouseover", () => {
-    gnbMenuTabs.forEach((tab) => tab.classList.remove("--active"));
-    gnbMenuContent.style.setProperty("--content-height", 0);
+function init() {
+  gnbMenu.addEventListener("mousemove", (e) => {
+    removeAllActive(gnbMenuTabs);
+    addActive(e.target.closest("li"));
+    currentIdx = gnbMenuTabs.indexOf(e.target.closest("li"));
+    updateContentHeight(currentIdx);
   });
-});
-
-const subMenuTabs = document.querySelectorAll(".contents-list__tab > li span");
-const subMenuLists = document.querySelectorAll(".contents-list__menu");
-
-subMenuTabs.forEach((tab, i) => {
-  tab.addEventListener("mouseover", () => {
-    subMenuTabs.forEach((tab) => tab.classList.remove("--active"));
-    subMenuLists.forEach((tab) => tab.classList.remove("--active"));
-    tab.classList.add("--active");
-    subMenuLists[i].classList.add("--active");
-    gnbMenuContent.style.setProperty(
-      "--content-height",
-      subMenuLists[i].scrollHeight + "px"
-    );
+  gnbMenuContent.addEventListener("mouseleave", closeContent);
+  headerElements.forEach((element) => {
+    element.addEventListener("mouseover", closeContent);
   });
+  window.addEventListener("load", () =>
+    gnbMenuContent.style.setProperty("--content-height", 0)
+  );
+}
+
+init();
+
+gnbContentList.forEach((list) => {
+  const id = list.getAttribute("id");
+  if (id === "branch-infomation" || id === "shopping-infomation") {
+    const subMenuTabs = list.querySelectorAll(".contents-list__tab .underline");
+    const subMenuLists = list.querySelectorAll(".contents-list__menu");
+
+    subMenuTabs.forEach((tab, i) => {
+      tab.addEventListener("mouseover", () => {
+        removeAllActive(subMenuTabs);
+        removeAllActive(subMenuLists);
+        addActive(tab);
+        addActive(subMenuLists[i]);
+        setContentHeight(`${subMenuLists[i].scrollHeight}px`);
+      });
+    });
+
+    list.addEventListener("mouseleave", (e) => {
+      const mouseX = e.clientX;
+      const mouseY = e.clientY;
+      const elementAtMouse = document.elementFromPoint(mouseX, mouseY);
+
+      function handleMouseLeave() {
+        removeAllActive(subMenuTabs);
+        removeAllActive(subMenuLists);
+        addActive(subMenuTabs[0]);
+        addActive(subMenuLists[0]);
+      }
+
+      if (
+        elementAtMouse.tagName === "A" ||
+        elementAtMouse.tagName === "LI" ||
+        elementAtMouse.tagName === "NAV"
+      ) {
+        handleMouseLeave();
+      } else {
+        setTimeout(() => {
+          handleMouseLeave();
+        }, 300);
+      }
+    });
+  }
 });
