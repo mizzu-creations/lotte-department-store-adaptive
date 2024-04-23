@@ -73,7 +73,7 @@
     @include flex-center-vert;
     gap: 0.5rem;
     span {
-      display: flex;
+      @include flex-center-vert;
       gap: 0.5rem;
       white-space: nowrap;
       &:first-child {

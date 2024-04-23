@@ -51,7 +51,7 @@ init();
 
 gnbContentList.forEach((list) => {
   const id = list.getAttribute("id");
-  if (id === "branch-infomation" || id === "shopping-infomation") {
+  if (id === "branch-information" || id === "shopping-information") {
     const subMenuTabs = list.querySelectorAll(".contents-list__tab .underline");
     const subMenuLists = list.querySelectorAll(".contents-list__menu");
 

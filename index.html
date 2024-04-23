@@ -38,6 +38,7 @@
     <script defer src="./js/cssVariables.js"></script>
     <script defer src="./js/cursor.js"></script>
     <script defer src="./js/miniAnimations.js"></script>
+    <script defer src="./js/branchInfoDialog.js"></script>
     <script defer src="./js/gnbMenu.js"></script>
     <script type="module" defer src="./js/scrollToTop.js"></script>
   </head>
@@ -62,7 +63,16 @@
             <li class="tab"><a href="javascript:void(0)">ESG</a></li>
           </ul>
           <div class="gnb__search">
-            <dialog class="gnb__search--left branch-info" open></dialog>
+            <div class="gnb__search--left branch-info">
+              <dialog class="content">
+                <div class="content-wrap">
+                  <ul class="content-title-wrap"></ul>
+                  <ul class="content-list --active"></ul>
+                  <ul class="content-list"></ul>
+                  <ul class="content-list shopping-mall"></ul>
+                </div>
+              </dialog>
+            </div>
             <div class="branch-info-ani">
               <div>
                 <span>한 눈에 보는 지점 정보</span>
@@ -86,7 +96,7 @@
           <dialog class="lang"><span>언어</span></dialog>
         </div>
         <div class="gnb__menu-content">
-          <div id="branch-infomation" class="contents-list">
+          <div id="branch-information" class="contents-list">
             <ul class="contents-list__tab">
               <li><span class="list-title underline --active">백화점</span></li>
               <li><span class="list-title underline">아울렛</span></li>
@@ -322,7 +332,7 @@
               </li>
             </ul>
           </div>
-          <div id="shopping-infomation" class="contents-list">
+          <div id="shopping-information" class="contents-list">
             <ul class="contents-list__tab">
               <li><span class="list-title underline --active">백화점</span></li>
               <li><span class="list-title underline">아울렛</span></li>
