@@ -1,0 +1,52 @@
+.lang-btn {
+  position: relative;
+  .lang {
+    height: fit-content;
+    position: absolute;
+    top: 2rem;
+    right: -4rem;
+    z-index: 2;
+    .lang-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      width: 7.8rem;
+      padding: 1.4rem 0;
+      margin-top: 1rem;
+      background-color: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(0.4rem);
+      border-radius: 1rem;
+      &::before {
+        content: "";
+        position: absolute;
+        top: -0.8rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 0;
+        border-bottom: 0.9rem solid $black;
+        border-left: 0.8rem solid transparent;
+        border-right: 0.8rem solid transparent;
+      }
+      span {
+        position: relative;
+        font-weight: 100;
+        font-size: 1rem;
+        color: $grayec;
+        &::before {
+          content: "";
+          position: absolute;
+          bottom: -0.3rem;
+          width: 0;
+          height: 0.1rem;
+          background-color: $grayec;
+          transition: width 0.2s;
+        }
+        &:hover::before {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

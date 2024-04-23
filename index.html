@@ -38,6 +38,7 @@
     <script defer src="./js/cssVariables.js"></script>
     <script defer src="./js/cursor.js"></script>
     <script defer src="./js/miniAnimations.js"></script>
+    <script type="module" defer src="./js/languageDialog.js"></script>
     <script defer src="./js/branchInfoDialog.js"></script>
     <script defer src="./js/gnbMenu.js"></script>
     <script type="module" defer src="./js/scrollToTop.js"></script>
@@ -90,10 +91,15 @@
           <a href="javascript:void(0)"
             ><img src="./assets/images/sitemap.png" alt="사이트맵"
           /></a>
-          <a href="javascript:void(0)"
-            ><img src="./assets/images/kr.png" alt="한국어"
-          /></a>
-          <dialog class="lang"><span>언어</span></dialog>
+          <a class="lang-btn" href="javascript:void(0)"
+            ><img src="./assets/images/kr.png" alt="한국어" />
+            <dialog class="lang">
+              <div class="lang-wrap">
+                <span>ENG</span><span>日本語</span><span>簡体中文</span
+                ><span>繁體中文</span>
+              </div>
+            </dialog>
+          </a>
         </div>
         <div class="gnb__menu-content">
           <div id="branch-information" class="contents-list">

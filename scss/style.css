@@ -410,6 +410,61 @@ html {
   padding: 4rem 0 8rem;
 }
 
+.lang-btn {
+  position: relative;
+}
+.lang-btn .lang {
+  height: -moz-fit-content;
+  height: fit-content;
+  position: absolute;
+  top: 2rem;
+  right: -4rem;
+  z-index: 2;
+}
+.lang-btn .lang .lang-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 7.8rem;
+  padding: 1.4rem 0;
+  margin-top: 1rem;
+  background-color: rgba(0, 0, 0, 0.8);
+  -webkit-backdrop-filter: blur(0.4rem);
+          backdrop-filter: blur(0.4rem);
+  border-radius: 1rem;
+}
+.lang-btn .lang .lang-wrap::before {
+  content: "";
+  position: absolute;
+  top: -0.8rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-bottom: 0.9rem solid #000000;
+  border-left: 0.8rem solid transparent;
+  border-right: 0.8rem solid transparent;
+}
+.lang-btn .lang .lang-wrap span {
+  position: relative;
+  font-weight: 100;
+  font-size: 1rem;
+  color: #ececec;
+}
+.lang-btn .lang .lang-wrap span::before {
+  content: "";
+  position: absolute;
+  bottom: -0.3rem;
+  width: 0;
+  height: 0.1rem;
+  background-color: #ececec;
+  transition: width 0.2s;
+}
+.lang-btn .lang .lang-wrap span:hover::before {
+  width: 100%;
+}
+
 .gnb__search--left {
   position: relative;
 }

@@ -4,4 +4,11 @@ function setScale(elem, duration, scale) {
   });
 }
 
-export { setScale };
+function returnCurrentElement(e) {
+  const mouseX = e.clientX;
+  const mouseY = e.clientY;
+  const elementAtMouse = document.elementFromPoint(mouseX, mouseY);
+  return elementAtMouse;
+}
+
+export { setScale, returnCurrentElement };
