@@ -8,6 +8,7 @@ const fetchDataAndRunCode = () => {
       const branchDialog = document.querySelector(
         ".gnb__search--left .content"
       );
+      const disabledArea = document.querySelector(".gnb__search-background");
       const contentWrap = document.querySelector("dialog .content-wrap");
       const contentTitleArea = document.querySelector(".content-title-wrap");
       const contentList = contentWrap.querySelectorAll(".content-list");
@@ -71,18 +72,22 @@ const fetchDataAndRunCode = () => {
             onComplete: () => {
               isDialogOpen = false;
               branchDialog.open = false;
+              disabledArea.style.display = "none";
             },
           });
         }
       });
       branchAnimation.addEventListener("click", () => {
         if (!branchDialog.open) {
+          disabledArea.style.display = "block";
           branchDialog.open = true;
           gsap.to(branchDialog, {
             width: 675,
             height: 514,
             duration: 0.3,
-            onComplete: () => (isDialogOpen = true),
+            onComplete: () => {
+              isDialogOpen = true;
+            },
           });
         } else {
           gsap.to(branchDialog, {
@@ -92,6 +97,7 @@ const fetchDataAndRunCode = () => {
             onComplete: () => {
               isDialogOpen = false;
               branchDialog.open = false;
+              disabledArea.style.display = "none";
             },
           });
         }
