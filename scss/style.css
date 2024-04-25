@@ -255,12 +255,8 @@ html {
   background: url("../../assets/icons/circle-search-32x32-black.svg");
   background-size: 3.2rem 3.2rem;
 }
-.gnb__search-background {
-  display: none;
-  position: absolute;
-  width: 100%;
-  height: 200vh;
-  background-color: transparent;
+.gnb__search--right.--active {
+  background: url("../../assets/icons/circle-close-32x32-black.svg");
 }
 
 .branch-info-ani {
@@ -415,6 +411,137 @@ html {
   display: flex;
   gap: 12rem;
   padding: 4rem 0 8rem;
+}
+
+.gnb__branchinfo-background {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 200vh;
+  background-color: transparent;
+}
+
+.gnb__search-box {
+  opacity: 0;
+}
+.gnb__search-box .search-dimmed {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 9.5rem;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+}
+.gnb__search-box .search-area {
+  position: absolute;
+  top: 9.5rem;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background-color: #ffffff;
+  border-bottom: 0.14rem solid #ececec;
+  z-index: 1;
+  overflow: hidden;
+}
+.gnb__search-box .search-area .search-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4rem;
+  height: 45.5rem;
+}
+.gnb__search-box .search-area .search-wrap--top {
+  display: flex;
+  width: 100rem;
+  height: 7rem;
+  border: 0.1rem solid #000000;
+  border-radius: 20rem;
+}
+.gnb__search-box .search-area .search-wrap--top .search-select {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 40%;
+  position: relative;
+  padding: 0 3rem;
+}
+.gnb__search-box .search-area .search-wrap--top .search-select::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  width: 0.1rem;
+  height: 3rem;
+  background-color: #ececec;
+}
+.gnb__search-box .search-area .search-wrap--top .search-select::after {
+  content: "";
+  width: 1.6rem;
+  height: 1.6rem;
+  background: url(../../assets/icons/bottom-16x16-black.svg) no-repeat center;
+  background-size: 1.6rem 1.6rem;
+}
+.gnb__search-box .search-area .search-wrap--top .search-input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 60%;
+  padding: 0 3rem;
+}
+.gnb__search-box .search-area .search-wrap--top .search-input input {
+  width: 100%;
+  height: 100%;
+}
+.gnb__search-box .search-area .search-wrap--top .search-input::after {
+  content: "";
+  width: 2rem;
+  height: 2rem;
+  background: url(../../assets/icons/search-20x20-black.svg) no-repeat center;
+  background-size: 2rem 2rem;
+}
+.gnb__search-box .search-area .search-wrap--bottom {
+  display: flex;
+  width: 80rem;
+  gap: 10rem;
+}
+.gnb__search-box .search-area .search-wrap--bottom h3 {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+.gnb__search-box .search-area .search-wrap--bottom .recent-keyword {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  position: relative;
+}
+.gnb__search-box .search-area .search-wrap--bottom .recent-keyword div {
+  font-size: 1.2rem;
+}
+.gnb__search-box .search-area .search-wrap--bottom .recent-keyword button {
+  position: absolute;
+  top: 0.4rem;
+  right: 0;
+}
+.gnb__search-box .search-area .search-wrap--bottom .recommend-keyword {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.gnb__search-box .search-area .search-wrap--bottom .recommend-keyword ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.gnb__search-box .search-area .search-wrap--bottom .recommend-keyword ul li {
+  padding: 1rem;
+  border-radius: 2rem;
+  background-color: #ececec;
+  font-size: 1.2rem;
 }
 
 .lang-btn {

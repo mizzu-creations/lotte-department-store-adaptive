@@ -8,7 +8,7 @@ const fetchDataAndRunCode = () => {
       const branchDialog = document.querySelector(
         ".gnb__search--left .content"
       );
-      const disabledArea = document.querySelector(".gnb__search-background");
+      const disabledArea = document.querySelector(".gnb__branch-background");
       const contentWrap = document.querySelector("dialog .content-wrap");
       const contentTitleArea = document.querySelector(".content-title-wrap");
       const contentList = contentWrap.querySelectorAll(".content-list");

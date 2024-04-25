@@ -40,6 +40,7 @@
     <script defer src="./js/miniAnimations.js"></script>
     <script type="module" defer src="./js/languageDialog.js"></script>
     <script defer src="./js/branchInfoDialog.js"></script>
+    <script defer src="./js/headerSearch.js"></script>
     <script defer src="./js/gnbMenu.js"></script>
     <script type="module" defer src="./js/scrollToTop.js"></script>
   </head>
@@ -63,7 +64,6 @@
             <li class="tab"><a href="javascript:void(0)">고객서비스</a></li>
             <li class="tab"><a href="javascript:void(0)">ESG</a></li>
           </ul>
-          <div class="gnb__search-background"></div>
           <div class="gnb__search">
             <div class="gnb__search--left branch-info">
               <dialog class="content">
@@ -793,6 +793,43 @@
                 </ul>
               </li>
             </ul>
+          </div>
+        </div>
+        <div class="gnb__branchinfo-background"></div>
+        <div class="gnb__search-box">
+          <div class="search-dimmed"></div>
+          <div class="search-area">
+            <div class="search-wrap">
+              <div class="search-wrap--top">
+                <div class="search-select">백화점 잠실점</div>
+                <div class="search-input">
+                  <input
+                    type="text"
+                    placeholder="브랜드, 서비스를 검색해보세요."
+                  />
+                </div>
+              </div>
+              <div class="search-wrap--bottom">
+                <div class="recent-keyword">
+                  <h3>최근 검색어</h3>
+                  <div>최근 검색어가 없습니다.</div>
+                  <button>전체삭제</button>
+                </div>
+                <div class="recommend-keyword">
+                  <h3>추천 검색어</h3>
+                  <ul>
+                    <li><a href="javascript:void(0)">#나이키</a></li>
+                    <li><a href="javascript:void(0)">#샤넬</a></li>
+                    <li><a href="javascript:void(0)">#디올</a></li>
+                    <li><a href="javascript:void(0)">#폴로</a></li>
+                    <li><a href="javascript:void(0)">#카페</a></li>
+                    <li><a href="javascript:void(0)">#유아휴게실</a></li>
+                    <li><a href="javascript:void(0)">#상품권</a></li>
+                    <li><a href="javascript:void(0)">#휴점일</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </header>
