@@ -2,7 +2,7 @@ header {
   @include flex-center-vert;
   flex-direction: column-reverse;
   width: 100%;
-  min-width: 130rem;
+  min-width: 120rem;
   position: fixed;
   background-color: $white;
   &::before {

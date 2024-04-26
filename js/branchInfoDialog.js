@@ -8,7 +8,9 @@ const fetchDataAndRunCode = () => {
       const branchDialog = document.querySelector(
         ".gnb__search--left .content"
       );
-      const disabledArea = document.querySelector(".gnb__branch-background");
+      const disabledArea = document.querySelector(
+        ".gnb__branchinfo-background"
+      );
       const contentWrap = document.querySelector("dialog .content-wrap");
       const contentTitleArea = document.querySelector(".content-title-wrap");
       const contentList = contentWrap.querySelectorAll(".content-list");
@@ -78,7 +80,7 @@ const fetchDataAndRunCode = () => {
         }
       });
       branchAnimation.addEventListener("click", () => {
-        if (!branchDialog.open) {
+        if (!branchDialog.open && !searchBtn.classList.contains("--active")) {
           disabledArea.style.display = "block";
           branchDialog.open = true;
           gsap.to(branchDialog, {

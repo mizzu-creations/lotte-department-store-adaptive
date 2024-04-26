@@ -801,11 +801,14 @@
           <div class="search-area">
             <div class="search-wrap">
               <div class="search-wrap--top">
-                <div class="search-select">백화점 잠실점</div>
+                <div class="search-select">
+                  <div><span>백화점</span><span>잠실점</span></div>
+                </div>
                 <div class="search-input">
                   <input
                     type="text"
                     placeholder="브랜드, 서비스를 검색해보세요."
+                    maxlength="20"
                   />
                 </div>
               </div>
@@ -831,6 +834,14 @@
               </div>
             </div>
           </div>
+          <dialog class="content">
+            <div class="content-wrap">
+              <ul class="content-title-wrap"></ul>
+              <ul class="content-list --active"></ul>
+              <ul class="content-list"></ul>
+              <ul class="content-list shopping-mall"></ul>
+            </div>
+          </dialog>
         </div>
       </header>
       <main style="height: 300vh"></main>
