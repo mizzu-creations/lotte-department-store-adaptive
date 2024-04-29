@@ -35,6 +35,8 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     ></script>
+    <script src="https://unpkg.com/split-type"></script>
+    <script defer src="./js/layoutAnimationFlow.js"></script>
     <script defer src="./js/cssVariables.js"></script>
     <script defer src="./js/cursor.js"></script>
     <script defer src="./js/miniAnimations.js"></script>
@@ -46,6 +48,7 @@
   </head>
   <body>
     <div class="web">
+      <section class="start-layer"></section>
       <div class="cursor"></div>
       <div class="cursor-slide prev"></div>
       <div class="cursor-slide next"></div>
@@ -844,7 +847,20 @@
           </dialog>
         </div>
       </header>
-      <main style="height: 300vh"></main>
+      <main style="height: 300vh">
+        <section class="enjoy-your-time">
+          <div class="enjoy-your-time__wrap">
+            <p>
+              Enjoy* Your Time<br />
+              at LOTTE
+            </p>
+            <img
+              src="./assets/images/20240412155432740_6.jpg"
+              alt="슈퍼 해피 킨더 유니버스"
+            />
+          </div>
+        </section>
+      </main>
       <button id="scroll-to-top">
         <span class="circle"></span>
         <span class="text-wrap">

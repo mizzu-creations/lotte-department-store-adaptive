@@ -11,6 +11,7 @@ header {
     order: 2;
     border-bottom: 0.14rem solid $grayec;
   }
+  z-index: 100;
 }
 
 .spot-menu {
@@ -27,6 +28,6 @@ header {
   }
 }
 
-main {
-  padding-top: 20rem;
-}
+// main {
+//   padding-top: 20rem;
+// }
