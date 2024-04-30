@@ -13,3 +13,11 @@ body {
   height: 100vh;
   overflow-x: hidden;
 }
+
+.scrollbar-track-y {
+  right: 0.1rem;
+  background-color: transparent;
+  .scrollbar-thumb-y {
+    width: 0.64rem;
+  }
+}

@@ -1,4 +1,5 @@
 const body = document.querySelector("body");
+const scrollContent = document.querySelector(".scroll-content");
 const header = document.querySelector("header");
 const startLayer = document.querySelector(".start-layer");
 const layer01 = document.querySelector(".enjoy-your-time");
@@ -12,6 +13,9 @@ const tl = gsap.timeline({ defaults: { ease: "power3.inOut" } });
 tl.set(body, {
   overflow: "hidden",
 })
+  .set(scrollContent, {
+    overflow: "hidden",
+  })
   .set(header, { y: -200, opacity: 0 })
   .set(layer01, { backgroundColor: "#F8D873", opacity: 0 })
   .set(layer01Bg, { backgroundColor: "#F8D873" })
@@ -57,7 +61,10 @@ tl.set(body, {
       stagger: { each: 0.05 },
       ease: "power3.inOut",
       onComplete: () => {
-        body.style.overflow = "auto";
+        setTimeout(() => {
+          body.style.overflow = "auto";
+          scrollContent.style.overflow = "auto";
+        }, 1000);
       },
     },
     "-=1.5"
