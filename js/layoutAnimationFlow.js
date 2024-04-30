@@ -6,14 +6,14 @@ const layer01Bg = document.querySelector(".enjoy-your-time__wrap");
 const layer01Img = document.querySelector(".enjoy-your-time img");
 const scrollTopBtn = document.querySelector("#scroll-to-top");
 const text = new SplitType(".enjoy-your-time p");
-
+console.log(scrollTopBtn);
 const tl = gsap.timeline({ defaults: { ease: "power3.inOut" } });
 
 tl.set(body, {
   overflow: "hidden",
 })
   .set(header, { y: -200, opacity: 0 })
-  .set(layer01, { backgroundColor: "#F8D873" })
+  .set(layer01, { backgroundColor: "#F8D873", opacity: 0 })
   .set(layer01Bg, { backgroundColor: "#F8D873" })
   .set(text.chars, { y: 50, opacity: 0 })
   .to(startLayer, {
@@ -28,6 +28,7 @@ tl.set(body, {
     "-=2.5"
   )
   .to(scrollTopBtn, { scale: 0, duration: 0.5 }, "-=1.5")
+  .to(layer01, { opacity: 1, duration: 0.5 }, "-=1.5")
   .fromTo(
     layer01Img,
     {
@@ -69,6 +70,5 @@ window.addEventListener("DOMContentLoaded", () => {
   tl.play();
 });
 window.addEventListener("resize", () => {
-  window.scrollTo(0, 0);
   tl.restart();
 });

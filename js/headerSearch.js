@@ -20,6 +20,7 @@ searchBtn.addEventListener("click", () => {
     searchTextInput.value = "";
     searchBtn.classList.add("--active");
     searchBox.style.display = "block";
+    searchDimmed.style.display = "block";
     gsap.to(gnbMenuArea, { opacity: 0, duration: 0.3 });
     gsap.to(gnbArea, { borderBottomWidth: 0, duration: 0.2 });
     gsap.to(searchArea, { height: 455, duration: 0.3 });
@@ -41,6 +42,7 @@ searchBtn.addEventListener("click", () => {
       duration: 0.3,
       onComplete: () => {
         searchBox.style.display = "none";
+        searchDimmed.style.display = "none";
         searchBtn.classList.remove("--active");
         isSearchAniPlaying = false;
       },
@@ -155,17 +157,29 @@ const fetchSearchDialogData = () => {
         const selectTxt = searchSelect.querySelectorAll("span");
         const subList = searchDialog.querySelectorAll(".sub-list");
         subList.forEach((list) => {
+          list.parentElement.addEventListener("mouseover", () => {
+            if (!list.parentElement.classList.contains("--active")) {
+              list.parentElement.style.backgroundColor = "#e0f55c";
+            }
+          });
+          list.parentElement.addEventListener("mouseleave", () => {
+            if (!list.parentElement.classList.contains("--active")) {
+              list.parentElement.style.backgroundColor = "#f6f6f6";
+            }
+          });
           list.parentElement.addEventListener("click", () => {
             if (
               list.parentElement.parentElement.previousElementSibling
                 .tagName === "A"
             ) {
               subList.forEach((list) => {
+                list.parentElement.classList.remove("--active");
                 list.parentElement.style.backgroundColor = "#f6f6f6";
               });
               selectTxt[0].textContent =
                 list.parentElement.parentElement.previousElementSibling.textContent;
               selectTxt[1].textContent = list.textContent;
+              list.parentElement.classList.add("--active");
               list.parentElement.style.backgroundColor = "#e0f55c";
               gsap.to(searchDialog, {
                 width: 0,
@@ -179,10 +193,12 @@ const fetchSearchDialogData = () => {
               });
             } else {
               subList.forEach((list) => {
+                list.parentElement.classList.remove("--active");
                 list.parentElement.style.backgroundColor = "#f6f6f6";
               });
               selectTxt[0].textContent = "쇼핑몰";
               selectTxt[1].textContent = list.textContent;
+              list.parentElement.classList.add("--active");
               list.parentElement.style.backgroundColor = "#e0f55c";
               gsap.to(searchDialog, {
                 width: 0,
@@ -197,6 +213,7 @@ const fetchSearchDialogData = () => {
             }
           });
           if (selectTxt[1].textContent === list.textContent) {
+            list.parentElement.classList.add("--active");
             list.parentElement.style.backgroundColor = "#e0f55c";
           }
         });

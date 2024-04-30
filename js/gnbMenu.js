@@ -45,6 +45,11 @@ function init() {
   window.addEventListener("load", () =>
     gnbMenuContent.style.setProperty("--content-height", 0)
   );
+  window.addEventListener("mousemove", (e) => {
+    if (e.target.classList.contains("enjoy-your-time__wrap")) {
+      removeAllActive(gnbMenuTabs);
+    }
+  });
 }
 
 init();
@@ -54,7 +59,6 @@ gnbContentList.forEach((list) => {
   if (id === "branch-information" || id === "shopping-information") {
     const subMenuTabs = list.querySelectorAll(".contents-list__tab .underline");
     const subMenuLists = list.querySelectorAll(".contents-list__menu");
-
     subMenuTabs.forEach((tab, i) => {
       tab.addEventListener("mouseover", () => {
         removeAllActive(subMenuTabs);

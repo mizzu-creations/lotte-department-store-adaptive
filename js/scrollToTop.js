@@ -4,7 +4,7 @@ const topBtn = document.querySelector("#scroll-to-top");
 const topBtnCircle = document.querySelector("#scroll-to-top .circle");
 const topBtnArrow = document.querySelector("#scroll-to-top img");
 let isAnimationPlaying = false;
-let prevScrollY = 0;
+// let prevScrollY = 0;
 
 const toBtnTl = gsap
   .timeline({ paused: true })
@@ -50,14 +50,14 @@ window.addEventListener("load", () => {
   });
 });
 
-window.addEventListener("scroll", () => {
-  const currentScrollY = window.scrollY;
+// window.addEventListener("scroll", () => {
+//   const currentScrollY = window.scrollY;
 
-  if (currentScrollY <= 1000 && prevScrollY > 1000) {
-    setScale(topBtn, 0.4, 0);
-  } else if (currentScrollY > 1000 && prevScrollY <= 1000) {
-    setScale(topBtn, 0.2, 1);
-  }
+//   if (currentScrollY <= 1000 && prevScrollY > 1000) {
+//     setScale(topBtn, 0.4, 0);
+//   } else if (currentScrollY > 1000 && prevScrollY <= 1000) {
+//     setScale(topBtn, 0.2, 1);
+//   }
 
-  prevScrollY = currentScrollY;
-});
+//   prevScrollY = currentScrollY;
+// });
