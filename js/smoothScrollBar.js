@@ -1,5 +1,6 @@
 import { setScale } from "./utils.js";
 const header = document.querySelector("header");
+const scrollContent = document.querySelector(".scroll-content");
 const sectionEnjoy = document.querySelector(".enjoy-your-time__wrap");
 const sectionEnjoyTxt = document.querySelector(".enjoy-your-time__wrap p");
 const sectionWhatsOn = document.querySelector(".whats-on-slider");
@@ -11,7 +12,6 @@ const sectionWhatsOnTxt = document.querySelector(".whats-on-slider h3");
 const topBtn = document.querySelector("#scroll-to-top");
 
 gsap.registerPlugin(ScrollTrigger);
-
 const container = document.querySelector("#scroll-container");
 const scrollBar = Scrollbar.init(container, {
   damping: 0.05,
@@ -103,6 +103,9 @@ function setupScrollTrigger() {
         scrub: true,
         markers: true,
         id: "slide",
+        onLeave: () => {
+          scrollBar.scrollTo(0, 6000, 3000);
+        },
       },
     }
   );

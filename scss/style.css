@@ -921,7 +921,7 @@ body {
   flex-direction: column;
   gap: calc(var(--uw) * 2.2916666667);
   width: 100%;
-  height: 100vh;
+  height: 80vh;
 }
 .whats-on-slider ul {
   display: flex;
@@ -1087,6 +1087,64 @@ body {
 }
 .whats-on-slider h3 span {
   font-family: "Orelo SemiWide DemiBold Italic";
+}
+
+.hot-keyword {
+  display: flex;
+  width: 100%;
+  height: 50vh;
+  padding: 4.1667vw;
+  border-top: 0.1rem solid #000000;
+  font-family: "Noto Sans KR", sans-serif;
+}
+.hot-keyword--left {
+  flex-basis: 41.6666666667%;
+  max-width: 41.6666666667%;
+}
+.hot-keyword--left h3 {
+  font-size: max(3.125vw, 4rem);
+  font-weight: 500;
+  letter-spacing: -0.02rem;
+}
+.hot-keyword--left h3 span {
+  font-family: "Orelo SemiWide DemiBold";
+  font-size: max(3.125vw, 4rem);
+  font-weight: 500;
+  letter-spacing: -0.02rem;
+}
+.hot-keyword--left span {
+  font-size: max(1.0417vw, 1.6rem);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 1.5;
+}
+.hot-keyword--right {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--uw) * 1.25);
+  flex-basis: 58.3333333333%;
+  max-width: 58.3333333333%;
+}
+.hot-keyword--right div {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--uw) * 0.5208333333);
+  font-size: max(1.25vw, 1.6rem);
+  font-weight: 400;
+  letter-spacing: -0.02rem;
+  line-height: 1.5;
+}
+.hot-keyword--right div span {
+  padding: calc(var(--uw) * 0.4166666667) calc(var(--uw) * 1.0416666667);
+  border-radius: 50rem;
+  background-color: #000000;
+  color: #ffffff;
+}
+.hot-keyword--right div img {
+  width: calc(var(--uw) * 3.125);
+  height: calc(var(--uw) * 3.125);
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 header {

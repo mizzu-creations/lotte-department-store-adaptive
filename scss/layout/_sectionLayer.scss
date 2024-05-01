@@ -58,7 +58,7 @@
   flex-direction: column;
   gap: calc(var(--uw) * 2.2916666667);
   width: 100%;
-  height: 100vh;
+  height: 80vh;
   ul {
     display: flex;
     align-items: center;
@@ -287,6 +287,63 @@
     letter-spacing: -0.02rem;
     span {
       font-family: "Orelo SemiWide DemiBold Italic";
+    }
+  }
+}
+
+.hot-keyword {
+  display: flex;
+  width: 100%;
+  height: 50vh;
+  padding: 4.1667vw;
+  border-top: 0.1rem solid $black;
+  font-family: "Noto Sans KR", sans-serif;
+  &--left {
+    flex-basis: calc(100% / 12 * 5);
+    max-width: calc(100% / 12 * 5);
+    h3 {
+      font-size: max(3.125vw, 4rem);
+      font-weight: 500;
+      letter-spacing: -0.02rem;
+      span {
+        font-family: "Orelo SemiWide DemiBold";
+        font-size: max(3.125vw, 4rem);
+        font-weight: 500;
+        letter-spacing: -0.02rem;
+      }
+    }
+    span {
+      font-size: max(1.0417vw, 1.6rem);
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      line-height: 1.5;
+    }
+  }
+  &--right {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--uw) * 1.25);
+    flex-basis: calc(100% / 12 * 7);
+    max-width: calc(100% / 12 * 7);
+    div {
+      display: flex;
+      align-items: center;
+      gap: calc(var(--uw) * 0.5208333333);
+      font-size: max(1.25vw, 1.6rem);
+      font-weight: 400;
+      letter-spacing: -0.02rem;
+      line-height: 1.5;
+      span {
+        padding: calc(var(--uw) * 0.4166666667) calc(var(--uw) * 1.0416666667);
+        border-radius: 50rem;
+        background-color: $black;
+        color: $white;
+      }
+      img {
+        width: calc(var(--uw) * 3.125);
+        height: calc(var(--uw) * 3.125);
+        object-fit: cover;
+      }
     }
   }
 }
