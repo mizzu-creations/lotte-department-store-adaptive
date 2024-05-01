@@ -9,6 +9,17 @@ function branchInfoAni() {
   });
 }
 
+function moreNewsAni() {
+  const moreNews = document.querySelector(".more-news img");
+  gsap.to(moreNews, {
+    duration: 13,
+    rotation: 360,
+    repeat: -1,
+    ease: "none",
+  });
+}
+
 window.addEventListener("load", () => {
   branchInfoAni();
+  moreNewsAni();
 });

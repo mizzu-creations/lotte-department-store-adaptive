@@ -1,21 +1,18 @@
+const mouseCursor = document.querySelector(".cursor");
 const body = document.querySelector("body");
-const scrollContent = document.querySelector(".scroll-content");
 const header = document.querySelector("header");
+const headerDimmed = document.querySelector("header .search-dimmed");
 const startLayer = document.querySelector(".start-layer");
 const layer01 = document.querySelector(".enjoy-your-time");
 const layer01Bg = document.querySelector(".enjoy-your-time__wrap");
 const layer01Img = document.querySelector(".enjoy-your-time img");
 const scrollTopBtn = document.querySelector("#scroll-to-top");
 const text = new SplitType(".enjoy-your-time p");
-console.log(scrollTopBtn);
 const tl = gsap.timeline({ defaults: { ease: "power3.inOut" } });
 
 tl.set(body, {
   overflow: "hidden",
 })
-  .set(scrollContent, {
-    overflow: "hidden",
-  })
   .set(header, { y: -200, opacity: 0 })
   .set(layer01, { backgroundColor: "#F8D873", opacity: 0 })
   .set(layer01Bg, { backgroundColor: "#F8D873" })
@@ -63,8 +60,9 @@ tl.set(body, {
       onComplete: () => {
         setTimeout(() => {
           body.style.overflow = "auto";
-          scrollContent.style.overflow = "auto";
-        }, 1000);
+          headerDimmed.style.display = "none";
+          mouseCursor.style.display = "block";
+        }, 500);
       },
     },
     "-=1.5"

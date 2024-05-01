@@ -39,10 +39,6 @@ topBtn.addEventListener("mouseleave", () => {
     isAnimationPlaying = false;
   }
 });
-topBtn.addEventListener("click", () => {
-  window.scrollTo(0, 0);
-});
-
 window.addEventListener("load", () => {
   gsap.to(topBtnArrow, {
     xPercent: -50,

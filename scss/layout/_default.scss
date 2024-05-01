@@ -16,7 +16,7 @@ body {
 
 .scrollbar-track-y {
   right: 0.1rem;
-  background-color: transparent;
+  background: transparent !important;
   .scrollbar-thumb-y {
     width: 0.64rem;
   }
