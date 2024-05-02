@@ -71,7 +71,6 @@ tl.set(body, {
 tl.pause();
 
 window.addEventListener("DOMContentLoaded", () => {
-  window.scrollTo(0, 0);
   tl.play();
 });
 window.addEventListener("resize", () => {

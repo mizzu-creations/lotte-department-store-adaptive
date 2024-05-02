@@ -1,6 +1,5 @@
 import { setScale } from "./utils.js";
 const header = document.querySelector("header");
-const scrollContent = document.querySelector(".scroll-content");
 const sectionEnjoy = document.querySelector(".enjoy-your-time__wrap");
 const sectionEnjoyTxt = document.querySelector(".enjoy-your-time__wrap p");
 const sectionWhatsOn = document.querySelector(".whats-on-slider");
@@ -67,28 +66,13 @@ ScrollTrigger.create({
   scrub: true,
 });
 
-ScrollTrigger.create({
-  trigger: sectionWhatsOn,
-  start: "top 80%",
-  end: "top 40%",
-  animation: gsap.fromTo(
-    sectionWhatsOnSlideLi,
-    {
-      x: 150,
-      opacity: 0,
-      stagger: 0.1,
-    },
-    {
-      x: 0,
-      opacity: 1,
-      stagger: 0.1,
-    }
-  ),
-  scrub: true,
-});
-
 let whatsOnScroll;
+
 function setupScrollTrigger() {
+  if (whatsOnScroll) {
+    whatsOnScroll.kill(); // 이전 스크롤 트리거 삭제
+  }
+
   whatsOnScroll = gsap.fromTo(
     sectionWhatsOnSlide,
     { x: 0 },
@@ -109,31 +93,61 @@ function setupScrollTrigger() {
       },
     }
   );
+
+  // sectionWhatsOnSlideLi에 대한 스크롤 트리거 설정 추가
+  ScrollTrigger.create({
+    trigger: sectionWhatsOn,
+    start: "top 80%",
+    end: "top 40%",
+    animation: gsap.fromTo(
+      sectionWhatsOnSlideLi,
+      {
+        x: 150,
+        opacity: 0,
+        stagger: 0.1,
+      },
+      {
+        x: 0,
+        opacity: 1,
+        stagger: 0.1,
+      }
+    ),
+    markers: true,
+    scrub: true,
+  });
 }
+
+function setupTextAnimation() {
+  const text = new SplitType(sectionWhatsOnTxt);
+
+  ScrollTrigger.create({
+    trigger: sectionWhatsOn,
+    start: "20% center",
+    end: "30% center",
+    animation: gsap.fromTo(
+      text.chars,
+      { scaleX: 0, opacity: 0, stagger: 0.2 },
+      { scaleX: 1, opacity: 1, stagger: 0.2 }
+    ),
+    scrub: true,
+  });
+}
+
 setupScrollTrigger();
-
-const text = new SplitType(sectionWhatsOnTxt);
-
-ScrollTrigger.create({
-  trigger: sectionWhatsOn,
-  start: "20% center",
-  end: "30% center",
-  animation: gsap.fromTo(
-    text.chars,
-    { scaleX: 0, opacity: 0, stagger: 0.2 },
-    { scaleX: 1, opacity: 1, stagger: 0.2 }
-  ),
-  scrub: true,
-  id: "p",
-});
+setupTextAnimation();
 
 window.addEventListener("resize", () => {
+  scrollBar.scrollTo(0, 0, 0);
+
   ScrollTrigger.getAll().forEach((trigger) => {
-    if (trigger.trigger.classList.contains("whats-on-slider")) {
+    if (trigger.trigger === sectionWhatsOn) {
       trigger.kill();
     }
   });
+
+  // 새로운 스크롤 트리거 및 텍스트 애니메이션 설정
   setupScrollTrigger();
+  setupTextAnimation();
 });
 
 const markers = () => {
