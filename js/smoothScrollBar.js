@@ -8,12 +8,15 @@ const sectionWhatsOnSlideLi = sectionWhatsOnSlide.querySelectorAll(
   ".whats-on-slider ul li"
 );
 const sectionWhatsOnTxt = document.querySelector(".whats-on-slider h3");
+const sectionHotKeyword = document.querySelector(".hot-keyword");
+let hotKeyword;
+const sectionPlace = document.querySelector("section.place");
 const topBtn = document.querySelector("#scroll-to-top");
 
 gsap.registerPlugin(ScrollTrigger);
 const container = document.querySelector("#scroll-container");
 const scrollBar = Scrollbar.init(container, {
-  damping: 0.05,
+  damping: 0.1,
 });
 
 ScrollTrigger.scrollerProxy(container, {
@@ -30,8 +33,9 @@ ScrollTrigger.defaults({ scroller: container });
 
 let prevScrollY = 0;
 const scrollOffset = () => {
-  scrollBar.addListener(({ offset }) => {
+  scrollBar.addListener(({ limit, offset }) => {
     const currentScrollY = offset.y;
+    hotKeyword = limit.y - offset.y / 2;
 
     if (currentScrollY <= 500 && prevScrollY > 500) {
       setScale(topBtn, 0.4, 0);
@@ -68,9 +72,9 @@ ScrollTrigger.create({
 
 let whatsOnScroll;
 
-function setupScrollTrigger() {
+function setWhatsOnSlide() {
   if (whatsOnScroll) {
-    whatsOnScroll.kill(); // 이전 스크롤 트리거 삭제
+    whatsOnScroll.kill();
   }
 
   whatsOnScroll = gsap.fromTo(
@@ -85,16 +89,13 @@ function setupScrollTrigger() {
         trigger: sectionWhatsOn,
         pin: true,
         scrub: true,
-        markers: true,
-        id: "slide",
         onLeave: () => {
-          scrollBar.scrollTo(0, 6000, 3000);
+          scrollBar.scrollTo(0, hotKeyword, 5000);
         },
       },
     }
   );
 
-  // sectionWhatsOnSlideLi에 대한 스크롤 트리거 설정 추가
   ScrollTrigger.create({
     trigger: sectionWhatsOn,
     start: "top 80%",
@@ -112,12 +113,11 @@ function setupScrollTrigger() {
         stagger: 0.1,
       }
     ),
-    markers: true,
     scrub: true,
   });
 }
 
-function setupTextAnimation() {
+function setWhatsOnTxt() {
   const text = new SplitType(sectionWhatsOnTxt);
 
   ScrollTrigger.create({
@@ -133,21 +133,88 @@ function setupTextAnimation() {
   });
 }
 
-setupScrollTrigger();
-setupTextAnimation();
+function setHotKeyword() {
+  const sectionHotKeywordLeft =
+    sectionHotKeyword.querySelector(".hot-keyword--left").children;
+  const sectionHotKeywordRight = sectionHotKeyword.querySelectorAll(
+    ".hot-keyword--right div"
+  );
+  const cursor = document.querySelector(".cursor");
+  const hotKeywordTl = gsap.timeline();
+  hotKeywordTl
+    .fromTo(
+      sectionHotKeywordLeft,
+      { y: 100, opacity: 0 },
+      { y: 0, opacity: 1, stagger: 0.2 }
+    )
+    .fromTo(
+      sectionHotKeywordRight,
+      { y: 100, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        stagger: 0.2,
+      }
+    );
+
+  ScrollTrigger.create({
+    trigger: sectionHotKeyword,
+    start: "0 70%",
+    end: "0 50%",
+    animation: hotKeywordTl,
+    scrub: true,
+  });
+
+  ScrollTrigger.create({
+    trigger: sectionHotKeyword,
+    start: "top center",
+    end: "70% center",
+    animation: gsap.to(sectionHotKeyword, {
+      opacity: 1,
+    }),
+    markers: true,
+    scrub: true,
+    onLeave: () => {
+      scrollBar.scrollTo(0, 4800, 1000);
+      gsap.to(cursor, { backgroundColor: "#f653f9", duration: 0.2 });
+    },
+    onEnterBack: () => {
+      scrollBar.scrollTo(0, 3300, 1000);
+      gsap.to(cursor, { backgroundColor: "#09ac06", duration: 0.2 });
+    },
+  });
+}
+
+setWhatsOnSlide();
+setWhatsOnTxt();
+setHotKeyword();
+
+// ScrollTrigger.create({
+//   trigger: sectionPlace,
+//   start: "0% center",
+//   end: "10% center",
+//   animation: scrollBar.scrollTo(0, 4000, 3000),
+//   pin: false,
+//   pinSpacing: false,
+//   markers: true,
+//   scrub: true,
+// });
 
 window.addEventListener("resize", () => {
   scrollBar.scrollTo(0, 0, 0);
 
   ScrollTrigger.getAll().forEach((trigger) => {
-    if (trigger.trigger === sectionWhatsOn) {
+    if (
+      trigger.trigger === sectionWhatsOn ||
+      trigger.trigger === sectionHotKeyword
+    ) {
       trigger.kill();
     }
   });
 
-  // 새로운 스크롤 트리거 및 텍스트 애니메이션 설정
-  setupScrollTrigger();
-  setupTextAnimation();
+  setWhatsOnSlide();
+  setWhatsOnTxt();
+  setHotKeyword();
 });
 
 const markers = () => {

@@ -6,6 +6,10 @@ const sectionWhatsOnSlide = document.querySelector(".whats-on-slider ul");
 const sectionWhatsOnSlideLi = sectionWhatsOnSlide.querySelectorAll(
   ".whats-on-slider ul li .slide"
 );
+const sectionHotKeywordTags = document.querySelectorAll(
+  ".hot-keyword--right span"
+);
+const sectionPlace = document.querySelector(".place");
 
 // const card = document.querySelector(".sample");
 // const list = document.querySelector(".sample2");
@@ -96,41 +100,14 @@ sectionWhatsOnSlideLi.forEach((list) => {
   });
 });
 
-// card.addEventListener("mouseover", () => {
-//   cursor.classList.add("more");
-//   scaleCursor(5);
-// });
-// card.addEventListener("mouseleave", () => {
-//   cursor.classList.remove("more");
-//   scaleCursor(1);
-// });
-
-// list.addEventListener("mouseover", () => {
-//   gsap.to(cursorPrev, 1, {
-//     opacity: 1,
-//   });
-//   gsap.to(cursorNext, 1, {
-//     opacity: 1,
-//   });
-// });
-// list.addEventListener("mouseleave", () => {
-//   gsap.to(cursorPrev, 1, {
-//     opacity: 0,
-//   });
-//   gsap.to(cursorNext, 1, {
-//     opacity: 0,
-//   });
-// });
-// list.addEventListener("mousedown", (e) => {
-//   isSlideOpen = true;
-//   setCursorPosition(e.clientX, e.clientY);
-//   scaleCursor(2);
-// });
-// list.addEventListener("mouseup", (e) => {
-//   isSlideOpen = false;
-//   setCursorPosition(e.clientX, e.clientY);
-//   scaleCursor(1);
-// });
+sectionHotKeywordTags.forEach((tag) => {
+  tag.addEventListener("mousemove", () => {
+    scaleCursor(2);
+  });
+  tag.addEventListener("mouseleave", () => {
+    scaleCursor(1);
+  });
+});
 
 window.addEventListener("mousemove", (e) => {
   gsap.to(cursor, 0.4, {
@@ -138,15 +115,20 @@ window.addEventListener("mousemove", (e) => {
     delay: 0.2,
   });
   setCursorPosition(e.clientX, e.clientY);
+  if (e.target.closest("section") === sectionPlace) {
+    gsap.to(cursor, { backgroundColor: "#f653f9", duration: 0.2 });
+  } else {
+    gsap.to(cursor, { backgroundColor: "#09ac06", duration: 0.2 });
+  }
 });
-// window.addEventListener("mousedown", () => {
-//   scaleCursor(2);
-// });
-// window.addEventListener("mouseup", (e) => {
-//   // isSlideOpen = false;
-//   // if (e.target.classList.value !== "sample") {
-//   //   setCursorPosition(e.clientX, e.clientY);
-//   //   scaleCursor(1);
-//   // }
-//   scaleCursor(1);
-// });
+window.addEventListener("mousedown", () => {
+  scaleCursor(2);
+});
+window.addEventListener("mouseup", (e) => {
+  // isSlideOpen = false;
+  // if (e.target.classList.value !== "sample") {
+  //   setCursorPosition(e.clientX, e.clientY);
+  //   scaleCursor(1);
+  // }
+  scaleCursor(1);
+});

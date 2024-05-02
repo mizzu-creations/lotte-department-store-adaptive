@@ -16,7 +16,6 @@
     width: 100%;
     height: 100%;
     position: relative;
-    background-color: $white;
     img {
       width: 60.833vw;
       height: 34.2706vw;
@@ -59,6 +58,7 @@
   gap: calc(var(--uw) * 2.2916666667);
   width: 100%;
   height: 80vh;
+  background-color: $white;
   ul {
     display: flex;
     align-items: center;
@@ -92,7 +92,9 @@
             transform: translate(-50%, -50%);
             width: calc(var(--uw) * 3.1770833333);
             height: calc(var(--uw) * 1.9791666667);
-            background-image: url("../../assets/icons/more-arrow.svg");
+            background: url("../../assets/icons/more-arrow.svg") no-repeat;
+            background-size: calc(var(--uw) * 3.1770833333),
+              calc(var(--uw) * 1.9791666667);
           }
           img {
             width: calc(var(--uw) * 14.0625);
@@ -293,10 +295,12 @@
 
 .hot-keyword {
   display: flex;
+  min-width: 120rem;
   width: 100%;
-  height: 50vh;
-  padding: 4.1667vw;
-  border-top: 0.1rem solid $black;
+  height: 60vh;
+  padding: 6vh 4.1667vw calc(var(--uw) * 5.8333333333);
+  background-color: $white;
+  border-top: 0.1rem solid $graycc;
   font-family: "Noto Sans KR", sans-serif;
   &--left {
     flex-basis: calc(100% / 12 * 5);
@@ -313,6 +317,7 @@
       }
     }
     span {
+      display: inline-block;
       font-size: max(1.0417vw, 1.6rem);
       font-weight: 400;
       letter-spacing: -0.03em;
@@ -346,4 +351,9 @@
       }
     }
   }
+}
+
+.place {
+  height: 100vh;
+  background-color: #165bdc;
 }
