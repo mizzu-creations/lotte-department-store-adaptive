@@ -10,7 +10,8 @@ const sectionWhatsOnSlideLi = sectionWhatsOnSlide.querySelectorAll(
 const sectionWhatsOnTxt = document.querySelector(".whats-on-slider h3");
 const sectionHotKeyword = document.querySelector(".hot-keyword");
 let hotKeyword;
-const sectionPlace = document.querySelector("section.place");
+const sectionPlace = document.querySelector(".place-eat-culture");
+const sectionPlaceTitle = sectionPlace.querySelector(".place-eat-culture h3");
 const topBtn = document.querySelector("#scroll-to-top");
 
 gsap.registerPlugin(ScrollTrigger);
@@ -90,7 +91,7 @@ function setWhatsOnSlide() {
         pin: true,
         scrub: true,
         onLeave: () => {
-          scrollBar.scrollTo(0, hotKeyword, 5000);
+          scrollBar.scrollTo(0, 3300, 5000);
         },
       },
     }
@@ -133,6 +134,7 @@ function setWhatsOnTxt() {
   });
 }
 
+// 키워드 라벨만 애니메이션 추가
 function setHotKeyword() {
   const sectionHotKeywordLeft =
     sectionHotKeyword.querySelector(".hot-keyword--left").children;
@@ -175,30 +177,105 @@ function setHotKeyword() {
     markers: true,
     scrub: true,
     onLeave: () => {
-      scrollBar.scrollTo(0, 4800, 1000);
+      scrollBar.scrollTo(0, 4700, 3000);
       gsap.to(cursor, { backgroundColor: "#f653f9", duration: 0.2 });
+      // gsap.to(sectionPlace, { backgroundColor: "#165bdc", duration: 2 });
     },
     onEnterBack: () => {
-      scrollBar.scrollTo(0, 3300, 1000);
+      scrollBar.scrollTo(0, 3300, 3000);
       gsap.to(cursor, { backgroundColor: "#09ac06", duration: 0.2 });
     },
   });
 }
 
+const text = new SplitType(sectionPlaceTitle);
+const chars = document.querySelectorAll(".place-eat-culture .char");
+chars.forEach((char) => {
+  const textContent = char.textContent;
+  char.innerHTML = `<div>${textContent}</div>`;
+});
+const charTxt = document.querySelectorAll(".char div");
+
+const introTitles = document.querySelectorAll(".place-eat-culture__intro span");
+introTitles.forEach((title) => {
+  const splitTit = new SplitType(title);
+
+  splitTit.chars.forEach((char) => {
+    const textContent = char.textContent;
+    char.innerHTML = `<div>${textContent}</div>`;
+  });
+
+  gsap.to(splitTit.chars, {
+    x: (idx, target) => {
+      target.style.zIndex = splitTit.chars.length - idx;
+      console.log(target.style.zIndex);
+      // document.documentElement.style.setProperty(
+      //   `--titleLeft`,
+      //   `${-target.offsetWidth + 10}px`
+      // );
+      // return -target.offsetWidth;
+    },
+    stagger: 0.01,
+  });
+});
+
 setWhatsOnSlide();
 setWhatsOnTxt();
 setHotKeyword();
 
-// ScrollTrigger.create({
-//   trigger: sectionPlace,
-//   start: "0% center",
-//   end: "10% center",
-//   animation: scrollBar.scrollTo(0, 4000, 3000),
-//   pin: false,
-//   pinSpacing: false,
-//   markers: true,
-//   scrub: true,
-// });
+gsap.to(charTxt, {
+  x: (idx, target) => {
+    document.documentElement.style.setProperty(
+      `--charLeft${idx}`,
+      `${-target.offsetWidth + 10}px`
+    );
+    return -target.offsetWidth;
+  },
+  stagger: 0.01,
+});
+
+ScrollTrigger.create({
+  trigger: sectionPlace,
+  start: "40% center",
+  end: "bottom center",
+  pin: false,
+  pinSpacing: false,
+  markers: true,
+  scrub: true,
+  id: "place",
+  onEnter: () => {
+    gsap.to(charTxt, {
+      x: 0,
+      stagger: { each: 0.1, ease: "none" },
+      ease: "Power3.inOut",
+    });
+  },
+  onLeave: () => {
+    gsap.to(charTxt, {
+      x: (_, target) => {
+        return -target.offsetWidth;
+      },
+      stagger: { each: 0.1, ease: "none" },
+      ease: "Power3.inOut",
+    });
+  },
+  onEnterBack: () => {
+    gsap.to(charTxt, {
+      x: 0,
+      stagger: { each: 0.1, ease: "none" },
+      ease: "Power3.inOut",
+    });
+  },
+  onLeaveBack: () => {
+    gsap.to(charTxt, {
+      x: (_, target) => {
+        return -target.offsetWidth;
+      },
+      stagger: { each: 0.1, ease: "none" },
+      ease: "Power3.inOut",
+    });
+  },
+});
 
 window.addEventListener("resize", () => {
   scrollBar.scrollTo(0, 0, 0);

@@ -9,7 +9,7 @@ const sectionWhatsOnSlideLi = sectionWhatsOnSlide.querySelectorAll(
 const sectionHotKeywordTags = document.querySelectorAll(
   ".hot-keyword--right span"
 );
-const sectionPlace = document.querySelector(".place");
+const sectionPlace = document.querySelector(".place-eat-culture");
 
 // const card = document.querySelector(".sample");
 // const list = document.querySelector(".sample2");
