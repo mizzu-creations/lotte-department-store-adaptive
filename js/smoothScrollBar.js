@@ -174,7 +174,7 @@ function setHotKeyword() {
     animation: gsap.to(sectionHotKeyword, {
       opacity: 1,
     }),
-    markers: true,
+    markers: false,
     scrub: true,
     onLeave: () => {
       scrollBar.scrollTo(0, 4700, 3000);
@@ -194,88 +194,160 @@ chars.forEach((char) => {
   const textContent = char.textContent;
   char.innerHTML = `<div>${textContent}</div>`;
 });
-const charTxt = document.querySelectorAll(".char div");
 
 const introTitles = document.querySelectorAll(".place-eat-culture__intro span");
 introTitles.forEach((title) => {
   const splitTit = new SplitType(title);
 
-  splitTit.chars.forEach((char) => {
+  splitTit.chars.forEach((char, idx) => {
     const textContent = char.textContent;
-    char.innerHTML = `<div>${textContent}</div>`;
+    char.innerHTML = `<div class="title">${textContent}</div>`;
+    char.insertAdjacentHTML("afterbegin", `<div class="title-block"></div>`);
+    char.style.zIndex = splitTit.chars.length - idx;
   });
+});
 
-  gsap.to(splitTit.chars, {
-    x: (idx, target) => {
-      target.style.zIndex = splitTit.chars.length - idx;
-      console.log(target.style.zIndex);
-      // document.documentElement.style.setProperty(
-      //   `--titleLeft`,
-      //   `${-target.offsetWidth + 10}px`
-      // );
-      // return -target.offsetWidth;
-    },
-    stagger: 0.01,
-  });
+const introTitBlocks = document.querySelectorAll(
+  ".place-eat-culture__intro .char .title-block"
+);
+const introTitChars = document.querySelectorAll(
+  ".place-eat-culture__intro .char .title"
+);
+
+gsap.to(introTitBlocks, {
+  width: (idx, _) => {
+    return introTitChars[idx].offsetWidth;
+  },
+  height: (idx, _) => {
+    return introTitChars[idx].offsetHeight;
+  },
+  stagger: 0.01,
+  onComplete: () => {
+    gsap.to(introTitBlocks, {
+      x: (_, target) => {
+        return -target.offsetWidth;
+      },
+    });
+  },
+});
+gsap.to(introTitChars, {
+  x: (_, target) => {
+    return -target.offsetWidth;
+  },
+  stagger: 0.01,
 });
 
 setWhatsOnSlide();
 setWhatsOnTxt();
 setHotKeyword();
 
-gsap.to(charTxt, {
-  x: (idx, target) => {
-    document.documentElement.style.setProperty(
-      `--charLeft${idx}`,
-      `${-target.offsetWidth + 10}px`
-    );
-    return -target.offsetWidth;
-  },
-  stagger: 0.01,
-});
+const charH3 = document.querySelector(".place-eat-culture h3");
+const charTxt = document.querySelectorAll(".place-eat-culture h3 .char div");
 
 ScrollTrigger.create({
   trigger: sectionPlace,
-  start: "40% center",
-  end: "bottom center",
-  pin: false,
-  pinSpacing: false,
-  markers: true,
-  scrub: true,
-  id: "place",
+  start: "10% center",
+  end: "50% center",
   onEnter: () => {
-    gsap.to(charTxt, {
+    gsap.to(introTitChars, {
       x: 0,
-      stagger: { each: 0.1, ease: "none" },
+      stagger: { each: 0.05, ease: "none" },
       ease: "Power3.inOut",
-    });
-  },
-  onLeave: () => {
-    gsap.to(charTxt, {
-      x: (_, target) => {
-        return -target.offsetWidth;
+      onComplete: () => {
+        const intro = document.querySelector(".place-eat-culture__intro");
+        const category = document.querySelector(".place-eat-culture__category");
+        const list = document.querySelector(".place-eat-culture__list");
+
+        const tl = gsap.timeline();
+        tl.to(introTitChars, { color: "#ffffff", duration: 2 })
+          .to(introTitBlocks, { backgroundColor: "#165BDC", duration: 2 }, "<")
+          .to(sectionPlace, { backgroundColor: "#165BDC", duration: 2 }, "<")
+          .to(
+            category,
+            {
+              onStart: () => (category.style.display = "flex"),
+              opacity: 1,
+              duration: 2,
+            },
+            "<"
+          )
+          .to(introTitChars, {
+            x: (_, target) => {
+              return -target.offsetWidth;
+            },
+            stagger: 0.01,
+            onComplete: () => {
+              intro.style.display = "none";
+              charH3.style.display = "block";
+            },
+          })
+          .fromTo(
+            charTxt,
+            {
+              x: (idx, target) => {
+                document.documentElement.style.setProperty(
+                  `--charLeft${idx}`,
+                  `${-target.offsetWidth + 10}px`
+                );
+                return -target.offsetWidth;
+              },
+            },
+            {
+              x: 0,
+              stagger: 0.1,
+              onStart: () => {
+                list.style.display = "flex";
+              },
+            }
+          )
+          .to(list, { opacity: 1, duration: 2 });
       },
-      stagger: { each: 0.1, ease: "none" },
-      ease: "Power3.inOut",
-    });
-  },
-  onEnterBack: () => {
-    gsap.to(charTxt, {
-      x: 0,
-      stagger: { each: 0.1, ease: "none" },
-      ease: "Power3.inOut",
-    });
-  },
-  onLeaveBack: () => {
-    gsap.to(charTxt, {
-      x: (_, target) => {
-        return -target.offsetWidth;
-      },
-      stagger: { each: 0.1, ease: "none" },
-      ease: "Power3.inOut",
     });
   },
 });
+
+// ScrollTrigger.create({
+//   trigger: sectionPlace,
+//   start: "40% center",
+//   end: "bottom center",
+//   pin: false,
+//   pinSpacing: false,
+//   markers: true,
+//   scrub: true,
+//   id: "place",
+//   onEnter: () => {
+//     gsap.to(charTxt, {
+//       x: 0,
+//       stagger: { each: 0.1, ease: "none" },
+//       ease: "Power3.inOut",
+//     });
+//   },
+//   onLeave: () => {
+//     gsap.to(charTxt, {
+//       x: (_, target) => {
+//         return -target.offsetWidth;
+//       },
+//       stagger: { each: 0.1, ease: "none" },
+//       ease: "Power3.inOut",
+//     });
+//   },
+//   onEnterBack: () => {
+//     gsap.to(charTxt, {
+//       x: 0,
+//       stagger: { each: 0.1, ease: "none" },
+//       ease: "Power3.inOut",
+//     });
+//   },
+//   onLeaveBack: () => {
+//     gsap.to(charTxt, {
+//       x: (_, target) => {
+//         return -target.offsetWidth;
+//       },
+//       stagger: { each: 0.1, ease: "none" },
+//       ease: "Power3.inOut",
+//     });
+//   },
+// });
 
 window.addEventListener("resize", () => {
   scrollBar.scrollTo(0, 0, 0);

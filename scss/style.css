@@ -1179,13 +1179,11 @@ body {
 .place-eat-culture__intro span .char {
   position: relative;
 }
-.place-eat-culture__intro span .char::before {
-  content: "";
-  width: 100%;
-  height: 100%;
+.place-eat-culture__intro span .char .title-block {
   position: absolute;
-  left: var(--titleLeft);
+  top: 0;
   background-color: #ffffff;
+  z-index: 1;
 }
 .place-eat-culture__category {
   display: none;
@@ -1227,6 +1225,7 @@ body {
   right: 5%;
   transform: translateY(-50%);
   z-index: 6;
+  opacity: 0;
 }
 .place-eat-culture__list ul {
   display: flex;
