@@ -4,7 +4,7 @@ const cursorNext = document.querySelector(".cursor-slide.next");
 
 const sectionWhatsOnSlide = document.querySelector(".whats-on-slider ul");
 const sectionWhatsOnSlideLi = sectionWhatsOnSlide.querySelectorAll(
-  ".whats-on-slider ul li .slide"
+  ".whats-on-slider ul li"
 );
 const sectionHotKeywordTags = document.querySelectorAll(
   ".hot-keyword--right span"
@@ -85,17 +85,23 @@ sectionWhatsOnSlide.addEventListener("mouseup", (e) => {
   }
 });
 
-sectionWhatsOnSlideLi.forEach((list) => {
+sectionWhatsOnSlideLi.forEach((list, idx) => {
   list.addEventListener("mouseover", () => {
     cursorPrev.style.display = "none";
     cursorNext.style.display = "none";
     cursor.classList.add("more");
+    if (idx === sectionWhatsOnSlideLi.length - 1) {
+      gsap.to(list.children[0].children, { scale: 0.8, duration: 0.5 });
+    }
     scaleCursor(5);
   });
   list.addEventListener("mouseleave", () => {
     cursorPrev.style.display = "block";
     cursorNext.style.display = "block";
     cursor.classList.remove("more");
+    if (idx === sectionWhatsOnSlideLi.length - 1) {
+      gsap.to(list.children[0].children, { scale: 1, duration: 0.5 });
+    }
     scaleCursor(1);
   });
 });

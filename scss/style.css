@@ -1304,6 +1304,7 @@ header {
   position: fixed;
   background-color: #ffffff;
   z-index: 100;
+  opacity: 0;
 }
 header::before {
   content: "";

@@ -68,7 +68,7 @@ ScrollTrigger.create({
   end: "bottom center",
   animation: gsap.fromTo(sectionEnjoyTxt, { y: -40 }, { y: -500 }),
   markers: false,
-  scrub: true,
+  scrub: 2,
 });
 
 let whatsOnScroll;
@@ -82,9 +82,8 @@ function setWhatsOnSlide() {
     sectionWhatsOnSlide,
     { x: 0 },
     {
-      duration: 2.5,
-      ease: "none",
       x: -sectionWhatsOnSlide.offsetWidth + sectionWhatsOn.offsetWidth,
+      ease: "none",
       scrollTrigger: {
         start: "top 20%",
         trigger: sectionWhatsOn,
@@ -96,93 +95,105 @@ function setWhatsOnSlide() {
       },
     }
   );
-
+  gsap.to(sectionWhatsOnSlideLi, {
+    x: 200,
+    opacity: 0,
+  });
   ScrollTrigger.create({
     trigger: sectionWhatsOn,
-    start: "top 80%",
-    end: "top 40%",
-    animation: gsap.fromTo(
-      sectionWhatsOnSlideLi,
-      {
-        x: 150,
-        opacity: 0,
-        stagger: 0.1,
-      },
-      {
+    start: "top center",
+    end: "top center",
+    onEnter: () => {
+      gsap.to(sectionWhatsOnSlideLi, {
         x: 0,
         opacity: 1,
         stagger: 0.1,
-      }
-    ),
-    scrub: true,
+        duration: 1,
+        ease: "power3.out",
+      });
+    },
+    onEnterBack: () => {
+      gsap.to(sectionWhatsOnSlideLi, {
+        x: 200,
+        opacity: 0,
+        stagger: { each: 0.2, ease: "power3.inOut" },
+      });
+    },
   });
 }
 
 function setWhatsOnTxt() {
   const text = new SplitType(sectionWhatsOnTxt);
+  gsap.to(text.chars, { scaleX: 0, opacity: 0 });
 
   ScrollTrigger.create({
     trigger: sectionWhatsOn,
-    start: "20% center",
+    start: "30% center",
     end: "30% center",
-    animation: gsap.fromTo(
-      text.chars,
-      { scaleX: 0, opacity: 0, stagger: 0.2 },
-      { scaleX: 1, opacity: 1, stagger: 0.2 }
-    ),
-    scrub: true,
+    onEnter: () => {
+      gsap.to(text.chars, { scaleX: 1, opacity: 1, stagger: 0.05 });
+    },
+    onEnterBack: () => {
+      gsap.to(text.chars, {
+        scaleX: 0,
+        opacity: 0,
+        stagger: { each: 0.05, from: "end" },
+      });
+    },
   });
 }
 
-// 키워드 라벨만 애니메이션 추가
 function setHotKeyword() {
   const sectionHotKeywordLeft =
     sectionHotKeyword.querySelector(".hot-keyword--left").children;
   const sectionHotKeywordRight = sectionHotKeyword.querySelectorAll(
     ".hot-keyword--right div"
   );
+  const hashTags = document.querySelectorAll(".hot-keyword--right div span");
   const cursor = document.querySelector(".cursor");
-  const hotKeywordTl = gsap.timeline();
-  hotKeywordTl
-    .fromTo(
-      sectionHotKeywordLeft,
-      { y: 100, opacity: 0 },
-      { y: 0, opacity: 1, stagger: 0.2 }
-    )
-    .fromTo(
-      sectionHotKeywordRight,
-      { y: 100, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        stagger: 0.2,
-      }
-    );
+  gsap.to(sectionHotKeywordLeft, { y: 100, opacity: 0 });
+  gsap.to(sectionHotKeywordRight, { y: 100, opacity: 0 });
 
   ScrollTrigger.create({
     trigger: sectionHotKeyword,
-    start: "0 70%",
-    end: "0 50%",
-    animation: hotKeywordTl,
-    scrub: true,
+    start: "top 60%",
+    end: "top 60%",
+    onEnter: () => {
+      gsap.to(sectionHotKeywordLeft, { y: 0, opacity: 1, stagger: 0.2 });
+      gsap.to(sectionHotKeywordRight, {
+        y: 0,
+        opacity: 1,
+        stagger: 0.2,
+      });
+      gsap.fromTo(
+        hashTags,
+        { scaleX: 0, opacity: 0 },
+        { scaleX: 1, opacity: 1, stagger: 0.1 }
+      );
+    },
+    onEnterBack: () => {
+      gsap.to(sectionHotKeywordLeft, { y: 100, opacity: 0 });
+      gsap.to(sectionHotKeywordRight, { y: 100, opacity: 0 });
+    },
+    markers: true,
   });
 
   ScrollTrigger.create({
     trigger: sectionHotKeyword,
     start: "top center",
-    end: "70% center",
+    end: "top center",
     animation: gsap.to(sectionHotKeyword, {
       opacity: 1,
     }),
     markers: false,
     scrub: true,
     onLeave: () => {
-      scrollBar.scrollTo(0, 4700, 3000);
+      // scrollBar.scrollTo(0, 4700, 3000);
       gsap.to(cursor, { backgroundColor: "#f653f9", duration: 0.2 });
       // gsap.to(sectionPlace, { backgroundColor: "#165bdc", duration: 2 });
     },
     onEnterBack: () => {
-      scrollBar.scrollTo(0, 3300, 3000);
+      // scrollBar.scrollTo(0, 3300, 3000);
       gsap.to(cursor, { backgroundColor: "#09ac06", duration: 0.2 });
     },
   });
