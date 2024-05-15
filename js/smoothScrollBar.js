@@ -175,7 +175,6 @@ function setHotKeyword() {
       gsap.to(sectionHotKeywordLeft, { y: 100, opacity: 0 });
       gsap.to(sectionHotKeywordRight, { y: 100, opacity: 0 });
     },
-    markers: true,
   });
 
   ScrollTrigger.create({
@@ -254,16 +253,24 @@ setHotKeyword();
 
 const charH3 = document.querySelector(".place-eat-culture h3");
 const charTxt = document.querySelectorAll(".place-eat-culture h3 .char div");
+let sectionPlaceOffsetY;
 
 ScrollTrigger.create({
   trigger: sectionPlace,
-  start: "10% center",
-  end: "50% center",
+  start: "top 60%",
   onEnter: () => {
+    scrollBar.addListener(({ offset }) => {
+      sectionPlaceOffsetY = offset.y;
+    });
     gsap.to(introTitChars, {
       x: 0,
       stagger: { each: 0.05, ease: "none" },
       ease: "Power3.inOut",
+      onStart: () => {
+        const windowHeight =
+          document.querySelector("#scroll-container").offsetHeight;
+        scrollBar.scrollTo(0, sectionPlaceOffsetY + windowHeight * 0.6, 2000);
+      },
       onComplete: () => {
         const intro = document.querySelector(".place-eat-culture__intro");
         const category = document.querySelector(".place-eat-culture__category");
