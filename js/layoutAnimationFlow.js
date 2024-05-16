@@ -73,6 +73,6 @@ tl.pause();
 window.addEventListener("DOMContentLoaded", () => {
   tl.play();
 });
-window.addEventListener("resize", () => {
-  tl.restart();
-});
+// window.addEventListener("resize", () => {
+//   tl.restart();
+// });

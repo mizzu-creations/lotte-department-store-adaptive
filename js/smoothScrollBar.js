@@ -9,7 +9,6 @@ const sectionWhatsOnSlideLi = sectionWhatsOnSlide.querySelectorAll(
 );
 const sectionWhatsOnTxt = document.querySelector(".whats-on-slider h3");
 const sectionHotKeyword = document.querySelector(".hot-keyword");
-let hotKeyword;
 const sectionPlace = document.querySelector(".place-eat-culture");
 const sectionPlaceTitle = sectionPlace.querySelector(".place-eat-culture h3");
 const topBtn = document.querySelector("#scroll-to-top");
@@ -36,12 +35,45 @@ let prevScrollY = 0;
 const scrollOffset = () => {
   scrollBar.addListener(({ limit, offset }) => {
     const currentScrollY = offset.y;
-    hotKeyword = limit.y - offset.y / 2;
 
     if (currentScrollY <= 500 && prevScrollY > 500) {
       setScale(topBtn, 0.4, 0);
     } else if (currentScrollY > 500 && prevScrollY <= 500) {
       setScale(topBtn, 0.2, 1);
+    }
+
+    const testHeight = document.querySelector(".test-section").offsetHeight;
+    const footerHeight = document.querySelector("footer").offsetHeight;
+    const bottomValue = 50 + footerHeight + offset.y - limit.y;
+
+    if (currentScrollY > limit.y - testHeight + footerHeight) {
+      gsap.to(document.querySelector(".test-section"), {
+        backgroundColor: "#000000",
+        duration: 1,
+      });
+      gsap.to("#scroll-to-top .circle", {
+        backgroundColor: "#ffffff",
+      });
+      gsap.to("#scroll-to-top .text-wrap", {
+        color: "#000000",
+      });
+    } else {
+      gsap.to(document.querySelector(".test-section"), {
+        backgroundColor: "#ffffff",
+        duration: 1,
+      });
+      gsap.to("#scroll-to-top .circle", {
+        backgroundColor: "#000000",
+      });
+      gsap.to("#scroll-to-top .text-wrap", {
+        color: "#ffffff",
+      });
+    }
+
+    if (currentScrollY > limit.y - footerHeight) {
+      topBtn.style.bottom = `${bottomValue}px`;
+    } else {
+      topBtn.style.bottom = "50px";
     }
 
     prevScrollY = currentScrollY;
@@ -367,22 +399,22 @@ ScrollTrigger.create({
 //   },
 // });
 
-window.addEventListener("resize", () => {
-  scrollBar.scrollTo(0, 0, 0);
+// window.addEventListener("resize", () => {
+//   scrollBar.scrollTo(0, 0, 0);
 
-  ScrollTrigger.getAll().forEach((trigger) => {
-    if (
-      trigger.trigger === sectionWhatsOn ||
-      trigger.trigger === sectionHotKeyword
-    ) {
-      trigger.kill();
-    }
-  });
+//   ScrollTrigger.getAll().forEach((trigger) => {
+//     if (
+//       trigger.trigger === sectionWhatsOn ||
+//       trigger.trigger === sectionHotKeyword
+//     ) {
+//       trigger.kill();
+//     }
+//   });
 
-  setWhatsOnSlide();
-  setWhatsOnTxt();
-  setHotKeyword();
-});
+//   setWhatsOnSlide();
+//   setWhatsOnTxt();
+//   setHotKeyword();
+// });
 
 const markers = () => {
   if (document.querySelector(".gsap-marker-scroller-start")) {
