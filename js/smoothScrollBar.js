@@ -47,6 +47,10 @@ const scrollOffset = () => {
     const bottomValue = 50 + footerHeight + offset.y - limit.y;
 
     if (currentScrollY > limit.y - testHeight + footerHeight) {
+      gsap.to(document.querySelector("body"), {
+        backgroundColor: "#000000",
+        duration: 1,
+      });
       gsap.to(document.querySelector(".test-section"), {
         backgroundColor: "#000000",
         duration: 1,
@@ -58,6 +62,10 @@ const scrollOffset = () => {
         color: "#000000",
       });
     } else {
+      gsap.to(document.querySelector("body"), {
+        backgroundColor: "#ffffff",
+        duration: 1,
+      });
       gsap.to(document.querySelector(".test-section"), {
         backgroundColor: "#ffffff",
         duration: 1,
@@ -399,22 +407,22 @@ ScrollTrigger.create({
 //   },
 // });
 
-// window.addEventListener("resize", () => {
-//   scrollBar.scrollTo(0, 0, 0);
+window.addEventListener("resize", () => {
+  scrollBar.scrollTo(0, 0, 0);
 
-//   ScrollTrigger.getAll().forEach((trigger) => {
-//     if (
-//       trigger.trigger === sectionWhatsOn ||
-//       trigger.trigger === sectionHotKeyword
-//     ) {
-//       trigger.kill();
-//     }
-//   });
+  ScrollTrigger.getAll().forEach((trigger) => {
+    if (
+      trigger.trigger === sectionWhatsOn ||
+      trigger.trigger === sectionHotKeyword
+    ) {
+      trigger.kill();
+    }
+  });
 
-//   setWhatsOnSlide();
-//   setWhatsOnTxt();
-//   setHotKeyword();
-// });
+  setWhatsOnSlide();
+  setWhatsOnTxt();
+  setHotKeyword();
+});
 
 const markers = () => {
   if (document.querySelector(".gsap-marker-scroller-start")) {

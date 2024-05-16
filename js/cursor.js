@@ -10,6 +10,7 @@ const sectionHotKeywordTags = document.querySelectorAll(
   ".hot-keyword--right span"
 );
 const sectionPlace = document.querySelector(".place-eat-culture");
+const footer = document.querySelector(".footer");
 
 // const card = document.querySelector(".sample");
 // const list = document.querySelector(".sample2");
@@ -113,6 +114,14 @@ sectionHotKeywordTags.forEach((tag) => {
   tag.addEventListener("mouseleave", () => {
     scaleCursor(1);
   });
+});
+
+footer.addEventListener("mousemove", (e) => {
+  if (e.target.closest("button") || e.target.closest("a")) {
+    scaleCursor(2);
+  } else {
+    scaleCursor(1);
+  }
 });
 
 window.addEventListener("mousemove", (e) => {
