@@ -70,19 +70,21 @@ tl.set(body, {
 
 tl.pause();
 
-window.addEventListener("DOMContentLoaded", () => {
-  tl.play();
-});
-window.addEventListener("resize", () => {
-  tl.restart();
-});
-
-window.addEventListener("wheel", (e) => {
-  if (e.deltaY < 0) {
-    gsap.killTweensOf(header, "y");
-    gsap.to(header, { y: 0, duration: 1 });
-  } else if (e.deltaY > 0) {
-    gsap.killTweensOf(header, "y");
-    gsap.to(header, { y: -250, delay: 0.5, duration: 2 });
-  }
+document.fonts.ready.then(() => {
+  console.log("font loaded");
+  window.addEventListener("DOMContentLoaded", () => {
+    tl.play();
+  });
+  window.addEventListener("resize", () => {
+    tl.restart();
+  });
+  window.addEventListener("wheel", (e) => {
+    if (e.deltaY < 0) {
+      gsap.killTweensOf(header, "y");
+      gsap.to(header, { y: 0, duration: 1 });
+    } else if (e.deltaY > 0) {
+      gsap.killTweensOf(header, "y");
+      gsap.to(header, { y: -250, delay: 0.5, duration: 2 });
+    }
+  });
 });
