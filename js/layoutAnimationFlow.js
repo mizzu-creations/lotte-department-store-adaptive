@@ -76,3 +76,13 @@ window.addEventListener("DOMContentLoaded", () => {
 window.addEventListener("resize", () => {
   tl.restart();
 });
+
+window.addEventListener("wheel", (e) => {
+  if (e.deltaY < 0) {
+    gsap.killTweensOf(header, "y");
+    gsap.to(header, { y: 0, duration: 1 });
+  } else if (e.deltaY > 0) {
+    gsap.killTweensOf(header, "y");
+    gsap.to(header, { y: -250, delay: 0.5, duration: 2 });
+  }
+});

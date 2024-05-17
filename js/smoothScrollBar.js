@@ -1,5 +1,4 @@
 import { setScale } from "./utils.js";
-const header = document.querySelector("header");
 const sectionEnjoy = document.querySelector(".enjoy-your-time__wrap");
 const sectionEnjoyTxt = document.querySelector(".enjoy-your-time__wrap p");
 const sectionWhatsOn = document.querySelector(".whats-on-slider");
@@ -85,15 +84,6 @@ const scrollOffset = () => {
     }
 
     prevScrollY = currentScrollY;
-
-    if (currentScrollY >= 100) {
-      gsap.killTweensOf(header, "y");
-      gsap.to(header, { y: -250, duration: 2 });
-    }
-    if (currentScrollY < 100) {
-      gsap.killTweensOf(header, "y");
-      gsap.to(header, { y: 0, duration: 0.5 });
-    }
   });
 };
 scrollOffset();
