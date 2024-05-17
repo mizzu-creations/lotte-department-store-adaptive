@@ -34,7 +34,7 @@ let prevScrollY = 0;
 const scrollOffset = () => {
   scrollBar.addListener(({ limit, offset }) => {
     const currentScrollY = offset.y;
-
+    // console.log(scrollBar.containerEl);
     if (currentScrollY <= 500 && prevScrollY > 500) {
       setScale(topBtn, 0.4, 0);
     } else if (currentScrollY > 500 && prevScrollY <= 500) {
@@ -83,6 +83,13 @@ const scrollOffset = () => {
       topBtn.style.bottom = "50px";
     }
 
+    // if (currentScrollY > 6000) {
+    //   scrollBar.scrollIntoView(sectionWhatsOn, {
+    //     offsetTop: 0,
+    //   });
+    // }
+    // console.log(scrollBar.isVisible(sectionWhatsOn));
+
     prevScrollY = currentScrollY;
   });
 };
@@ -120,7 +127,9 @@ function setWhatsOnSlide() {
         pin: true,
         scrub: true,
         onLeave: () => {
-          scrollBar.scrollTo(0, 3300, 5000);
+          scrollBar.scrollIntoView(sectionHotKeyword, {
+            offsetTop: 550,
+          });
         },
       },
     }
@@ -224,12 +233,10 @@ function setHotKeyword() {
     markers: false,
     scrub: true,
     onLeave: () => {
-      // scrollBar.scrollTo(0, 4700, 3000);
       gsap.to(cursor, { backgroundColor: "#f653f9", duration: 0.2 });
       // gsap.to(sectionPlace, { backgroundColor: "#165bdc", duration: 2 });
     },
     onEnterBack: () => {
-      // scrollBar.scrollTo(0, 3300, 3000);
       gsap.to(cursor, { backgroundColor: "#09ac06", duration: 0.2 });
     },
   });
@@ -304,9 +311,9 @@ ScrollTrigger.create({
       stagger: { each: 0.05, ease: "none" },
       ease: "Power3.inOut",
       onStart: () => {
-        const windowHeight =
-          document.querySelector("#scroll-container").offsetHeight;
-        scrollBar.scrollTo(0, sectionPlaceOffsetY + windowHeight * 0.6, 2000);
+        scrollBar.scrollIntoView(sectionPlace, {
+          offsetTop: 0,
+        });
       },
       onComplete: () => {
         const intro = document.querySelector(".place-eat-culture__intro");
