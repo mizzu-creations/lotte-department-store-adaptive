@@ -4,16 +4,15 @@ const cursorNext = document.querySelector(".cursor-slide.next");
 
 const sectionWhatsOnSlide = document.querySelector(".whats-on-slider ul");
 const sectionWhatsOnSlideLi = sectionWhatsOnSlide.querySelectorAll(
-  ".whats-on-slider ul li"
+  ".whats-on-slider ul li a"
 );
 const sectionHotKeywordTags = document.querySelectorAll(
   ".hot-keyword--right span"
 );
 const sectionPlace = document.querySelector(".place-eat-culture");
+const sectionFollowInsta = document.querySelectorAll(".follow-instagram li a");
 const footer = document.querySelector(".footer");
 
-// const card = document.querySelector(".sample");
-// const list = document.querySelector(".sample2");
 let isSlideOpen = false;
 
 function setCursorPosition(left, top) {
@@ -112,6 +111,15 @@ sectionHotKeywordTags.forEach((tag) => {
     scaleCursor(2);
   });
   tag.addEventListener("mouseleave", () => {
+    scaleCursor(1);
+  });
+});
+
+sectionFollowInsta.forEach((list) => {
+  list.addEventListener("mouseover", () => {
+    scaleCursor(2);
+  });
+  list.addEventListener("mouseleave", () => {
     scaleCursor(1);
   });
 });

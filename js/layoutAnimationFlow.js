@@ -81,10 +81,23 @@ document.fonts.ready.then(() => {
   window.addEventListener("wheel", (e) => {
     if (e.deltaY < 0) {
       gsap.killTweensOf(header, "y");
-      gsap.to(header, { y: 0, duration: 1 });
+      gsap.to(header, {
+        y: 0,
+        duration: 1,
+        onStart: () => {
+          header.style.display = "flex";
+        },
+      });
     } else if (e.deltaY > 0) {
       gsap.killTweensOf(header, "y");
-      gsap.to(header, { y: -250, delay: 0.5, duration: 2 });
+      gsap.to(header, {
+        y: -250,
+        delay: 0.5,
+        duration: 2,
+        onComplete: () => {
+          header.style.display = "none";
+        },
+      });
     }
   });
 });
