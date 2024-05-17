@@ -135,6 +135,7 @@ function setWhatsOnSlide() {
       },
     }
   );
+  sectionWhatsOnSlide.style.display = "none";
   gsap.to(sectionWhatsOnSlideLi, {
     x: 200,
     opacity: 0,
@@ -144,6 +145,7 @@ function setWhatsOnSlide() {
     start: "top center",
     end: "top center",
     onEnter: () => {
+      sectionWhatsOnSlide.style.display = "flex";
       gsap.to(sectionWhatsOnSlideLi, {
         x: 0,
         opacity: 1,
@@ -157,6 +159,11 @@ function setWhatsOnSlide() {
         x: 200,
         opacity: 0,
         stagger: { each: 0.2, ease: "power3.inOut" },
+        onStart: () => {
+          setTimeout(() => {
+            sectionWhatsOnSlide.style.display = "none";
+          }, 500);
+        },
       });
     },
   });
