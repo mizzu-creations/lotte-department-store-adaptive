@@ -60,6 +60,9 @@ const scrollOffset = () => {
       gsap.to("#scroll-to-top .text-wrap", {
         color: "#000000",
       });
+      gsap.to("#scroll-to-top svg path", {
+        fill: "#000000",
+      });
     } else {
       gsap.to(document.querySelector("body"), {
         backgroundColor: "#ffffff",
@@ -74,6 +77,9 @@ const scrollOffset = () => {
       });
       gsap.to("#scroll-to-top .text-wrap", {
         color: "#ffffff",
+      });
+      gsap.to("#scroll-to-top svg path", {
+        fill: "#ffffff",
       });
     }
 

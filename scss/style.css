@@ -830,7 +830,7 @@ html {
   letter-spacing: 0.1rem;
   font-family: "Orelo SemiWide DemiBold Italic";
 }
-#scroll-to-top img {
+#scroll-to-top svg {
   width: calc(var(--uw) * 1.1979166667);
   height: calc(var(--uw) * 1.875);
   position: absolute;
