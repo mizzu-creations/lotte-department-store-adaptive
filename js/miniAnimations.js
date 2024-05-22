@@ -22,14 +22,18 @@ function followInstaGalleryAni() {
   const galleryTop = gallery.querySelector(".gallery__top");
   const galleryBottom = gallery.querySelector(".gallery__bottom");
   const galleryWidth = galleryTop.querySelector("ul").offsetWidth;
+  const galleryGap = parseFloat(
+    window.getComputedStyle(gallery).getPropertyValue("gap")
+  );
+
   const topTl = gsap.timeline().to(galleryTop, {
-    x: -galleryWidth,
+    x: -galleryWidth - galleryGap,
     repeat: -1,
     duration: 20,
     ease: "none",
   });
   const bottomTl = gsap.timeline().to(galleryBottom, {
-    x: galleryWidth,
+    x: galleryWidth + galleryGap,
     repeat: -1,
     duration: 20,
     ease: "none",
