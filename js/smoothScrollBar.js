@@ -89,20 +89,22 @@ const scrollOffset = () => {
       topBtn.style.bottom = "50px";
     }
 
-    // if (currentScrollY > 6000) {
-    //   scrollBar.scrollIntoView(sectionWhatsOn, {
-    //     offsetTop: 0,
-    //   });
-    // }
-    // console.log(scrollBar.isVisible(sectionWhatsOn));
-
     prevScrollY = currentScrollY;
   });
 };
 scrollOffset();
 
 topBtn.addEventListener("click", () => {
+  const header = document.querySelector("header");
   scrollBar.scrollTo(0, 0, 3000);
+  gsap.to(header, {
+    y: 0,
+    duration: 1,
+    delay: 1,
+    onStart: () => {
+      header.style.display = "flex";
+    },
+  });
 });
 
 ScrollTrigger.create({
