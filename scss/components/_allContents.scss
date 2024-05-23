@@ -1,0 +1,38 @@
+.all-contents {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  padding: calc(var(--uw) * 0.4166666667) calc(var(--uw) * 0.9375);
+  position: relative;
+  border: 0.1rem solid $black;
+  border-radius: calc(var(--uw) * 15.625);
+  overflow: hidden;
+  &__text {
+    font-weight: 400;
+    font-size: calc(var(--uw) * 0.9375);
+    font-family: "Noto Sans LANG";
+    line-height: 1.5;
+    letter-spacing: -0.02rem;
+    color: $black;
+    text-transform: uppercase;
+    z-index: 1;
+  }
+  &__circle {
+    width: calc(var(--uw) * 3.125);
+    height: calc(var(--uw) * 3.125);
+    position: absolute;
+    top: 100%;
+    border-radius: 50%;
+    background-color: $black;
+  }
+  &.dark {
+    border: 0.1rem solid $white;
+    .text {
+      color: $white;
+    }
+    .circle {
+      background-color: $white;
+    }
+  }
+}

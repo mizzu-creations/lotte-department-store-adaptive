@@ -786,6 +786,46 @@ html {
   transform-origin: top right;
 }
 
+.all-contents {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: calc(var(--uw) * 0.4166666667) calc(var(--uw) * 0.9375);
+  position: relative;
+  border: 0.1rem solid #000000;
+  border-radius: calc(var(--uw) * 15.625);
+  overflow: hidden;
+}
+.all-contents__text {
+  font-weight: 400;
+  font-size: calc(var(--uw) * 0.9375);
+  font-family: "Noto Sans LANG";
+  line-height: 1.5;
+  letter-spacing: -0.02rem;
+  color: #000000;
+  text-transform: uppercase;
+  z-index: 1;
+}
+.all-contents__circle {
+  width: calc(var(--uw) * 3.125);
+  height: calc(var(--uw) * 3.125);
+  position: absolute;
+  top: 100%;
+  border-radius: 50%;
+  background-color: #000000;
+}
+.all-contents.dark {
+  border: 0.1rem solid #ffffff;
+}
+.all-contents.dark .text {
+  color: #ffffff;
+}
+.all-contents.dark .circle {
+  background-color: #ffffff;
+}
+
 html {
   scroll-behavior: smooth;
 }
