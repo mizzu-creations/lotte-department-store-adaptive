@@ -34,23 +34,28 @@ let prevScrollY = 0;
 const scrollOffset = () => {
   scrollBar.addListener(({ limit, offset }) => {
     const currentScrollY = offset.y;
-    // console.log(scrollBar.containerEl);
+
     if (currentScrollY <= 500 && prevScrollY > 500) {
       setScale(topBtn, 0.4, 0);
     } else if (currentScrollY > 500 && prevScrollY <= 500) {
       setScale(topBtn, 0.2, 1);
     }
 
-    const testHeight = document.querySelector(".test-section").offsetHeight;
+    const lifeStyleHeight = document.querySelector(".life-style").offsetHeight;
+    const magazineHeight =
+      document.querySelector(".magazine-section").offsetHeight;
     const footerHeight = document.querySelector("footer").offsetHeight;
     const bottomValue = 50 + footerHeight + offset.y - limit.y;
 
-    if (currentScrollY > limit.y - testHeight + footerHeight) {
+    if (
+      currentScrollY >
+      limit.y - (lifeStyleHeight / 2 + magazineHeight + footerHeight)
+    ) {
       gsap.to(document.querySelector("body"), {
         backgroundColor: "#000000",
         duration: 1,
       });
-      gsap.to(document.querySelector(".test-section"), {
+      gsap.to(document.querySelector(".magazine-section"), {
         backgroundColor: "#000000",
         duration: 1,
       });
@@ -68,7 +73,7 @@ const scrollOffset = () => {
         backgroundColor: "#ffffff",
         duration: 1,
       });
-      gsap.to(document.querySelector(".test-section"), {
+      gsap.to(document.querySelector(".magazine-section"), {
         backgroundColor: "#ffffff",
         duration: 1,
       });

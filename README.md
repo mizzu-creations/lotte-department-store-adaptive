@@ -13,9 +13,3 @@
 - site | 링크
 - code | 링크
 - blog | 링크
-
-- LifestyleLAB 부분 제작
-- place eat 부분 마무리
-- scrollIntoView 진행중일 때 스크롤 방지
-- resize 조정
-- 기존 작업 리팩토링

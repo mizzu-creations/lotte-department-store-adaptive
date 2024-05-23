@@ -11,6 +11,7 @@ const sectionHotKeywordTags = document.querySelectorAll(
 );
 const sectionPlace = document.querySelector(".place-eat-culture");
 const sectionFollowInsta = document.querySelectorAll(".follow-instagram li a");
+const sectionLifeStyle = document.querySelectorAll(".life-style figure");
 const footer = document.querySelector(".footer");
 
 let isSlideOpen = false;
@@ -120,6 +121,21 @@ sectionFollowInsta.forEach((list) => {
     scaleCursor(2);
   });
   list.addEventListener("mouseleave", () => {
+    scaleCursor(1);
+  });
+});
+
+sectionLifeStyle.forEach((list) => {
+  list.addEventListener("mouseover", () => {
+    cursorPrev.style.display = "none";
+    cursorNext.style.display = "none";
+    cursor.classList.add("more");
+    scaleCursor(5);
+  });
+  list.addEventListener("mouseleave", () => {
+    cursorPrev.style.display = "block";
+    cursorNext.style.display = "block";
+    cursor.classList.remove("more");
     scaleCursor(1);
   });
 });
